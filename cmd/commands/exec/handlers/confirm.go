@@ -1,4 +1,4 @@
-package execFormHandlers
+package handlers
 
 import (
 	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
@@ -6,7 +6,18 @@ import (
 	"github.com/charmbracelet/huh"
 )
 
-func HandleConfirm(input map[string]interface{}, vars map[string]interface{}) (*huh.Confirm, string, *bool, error) {
+type ConfirmHandler struct {
+}
+
+func NewConfirmHandler() *ConfirmHandler {
+	return &ConfirmHandler{}
+}
+
+func (h *ConfirmHandler) Handle(data any, vars map[string]any) (huh.Field, string, any, error) {
+	return handleConfirm(data.(map[string]interface{}), vars)
+}
+
+func handleConfirm(input map[string]interface{}, vars map[string]interface{}) (huh.Field, string, any, error) {
 	var err error
 	data := vars["data"].(map[string]interface{})
 
@@ -48,5 +59,5 @@ func HandleConfirm(input map[string]interface{}, vars map[string]interface{}) (*
 
 	data[out] = out
 
-	return h, out, &outValue, nil
+	return h, out, outValue, nil
 }

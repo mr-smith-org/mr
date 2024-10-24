@@ -1,4 +1,4 @@
-package execHandlers
+package handlers
 
 import (
 	"fmt"
@@ -14,7 +14,19 @@ import (
 	"github.com/spf13/afero"
 )
 
-func HandleModify(module string, data map[string]interface{}, vars map[string]interface{}) error {
+type ModifyHandler struct {
+	module string
+}
+
+func NewModifyHandler(module string) *ModifyHandler {
+	return &ModifyHandler{module: module}
+}
+
+func (h *ModifyHandler) Handle(data any, vars map[string]any) error {
+	return handleModify(h.module, data.(map[string]interface{}), vars)
+}
+
+func handleModify(module string, data map[string]interface{}, vars map[string]interface{}) error {
 	path := shared.KumaFilesPath
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if module != "" {

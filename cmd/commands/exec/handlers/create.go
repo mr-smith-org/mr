@@ -1,4 +1,4 @@
-package execHandlers
+package handlers
 
 import (
 	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
@@ -10,7 +10,19 @@ import (
 	"github.com/spf13/afero"
 )
 
-func HandleCreate(module string, data map[string]interface{}, vars map[string]interface{}) error {
+type CreateHandler struct {
+	module string
+}
+
+func NewCreateHandler(module string) *CreateHandler {
+	return &CreateHandler{module: module}
+}
+
+func (h *CreateHandler) Handle(data any, vars map[string]any) error {
+	return handleCreate(h.module, data.(map[string]interface{}), vars)
+}
+
+func handleCreate(module string, data map[string]interface{}, vars map[string]interface{}) error {
 	path := shared.KumaFilesPath
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if module != "" {

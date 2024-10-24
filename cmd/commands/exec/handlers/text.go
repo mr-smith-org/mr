@@ -1,4 +1,4 @@
-package execFormHandlers
+package handlers
 
 import (
 	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
@@ -6,7 +6,18 @@ import (
 	"github.com/charmbracelet/huh"
 )
 
-func HandleText(input map[string]interface{}, vars map[string]interface{}) (*huh.Text, string, *string, error) {
+type TextHandler struct {
+}
+
+func NewTextHandler() *TextHandler {
+	return &TextHandler{}
+}
+
+func (h *TextHandler) Handle(data any, vars map[string]any) (huh.Field, string, any, error) {
+	return handleText(data.(map[string]interface{}), vars)
+}
+
+func handleText(input map[string]interface{}, vars map[string]interface{}) (huh.Field, string, any, error) {
 	var err error
 	data := vars["data"].(map[string]interface{})
 
