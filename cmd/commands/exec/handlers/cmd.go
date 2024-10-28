@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/functions"
 	"github.com/arthurbcp/kuma/v2/internal/helpers"
+	"github.com/arthurbcp/kuma/v2/pkg/functions"
 	"github.com/arthurbcp/kuma/v2/pkg/style"
 )
 
