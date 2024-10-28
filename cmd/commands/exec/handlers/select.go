@@ -58,7 +58,7 @@ func handleSelect(input map[string]interface{}, vars map[string]interface{}) (hu
 			Options(options...).
 			Value(&outValue)
 
-		return h, out, outValue, nil
+		return h, out, &outValue, nil
 	}
 	return nil, out, nil, nil
 }

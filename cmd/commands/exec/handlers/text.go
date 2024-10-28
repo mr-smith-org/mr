@@ -19,7 +19,6 @@ func (h *TextHandler) Handle(data any, vars map[string]any) (huh.Field, string, 
 
 func handleText(input map[string]interface{}, vars map[string]interface{}) (huh.Field, string, any, error) {
 	var err error
-	data := vars["data"].(map[string]interface{})
 
 	label, err := execBuilders.BuildStringValue("label", input, vars, false, constants.TextComponent)
 	if err != nil {
@@ -43,8 +42,6 @@ func handleText(input map[string]interface{}, vars map[string]interface{}) (huh.
 		Description(description).
 		Placeholder(placeholder).
 		Value(&outValue)
-
-	data[out] = out
 
 	return h, out, &outValue, nil
 }

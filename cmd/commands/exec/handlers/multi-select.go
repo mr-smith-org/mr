@@ -65,7 +65,7 @@ func handleMultiSelect(input map[string]interface{}, vars map[string]interface{}
 			h.Limit(limit)
 		}
 
-		return h, out, outValue, nil
+		return h, out, &outValue, nil
 	}
 	return nil, out, nil, nil
 }

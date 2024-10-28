@@ -59,5 +59,5 @@ func handleConfirm(input map[string]interface{}, vars map[string]interface{}) (h
 
 	data[out] = out
 
-	return h, out, outValue, nil
+	return h, out, &outValue, nil
 }
