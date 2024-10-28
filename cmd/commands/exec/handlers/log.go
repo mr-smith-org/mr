@@ -1,4 +1,4 @@
-package execHandlers
+package handlers
 
 import (
 	"fmt"
@@ -8,7 +8,18 @@ import (
 	"github.com/arthurbcp/kuma/v2/pkg/style"
 )
 
-func HandleLog(log string, vars map[string]interface{}) error {
+type LogHandler struct {
+}
+
+func NewLogHandler() *LogHandler {
+	return &LogHandler{}
+}
+
+func (h *LogHandler) Handle(data any, vars map[string]any) error {
+	return handleLog(data.(string), vars)
+}
+
+func handleLog(log string, vars map[string]interface{}) error {
 	var err error
 
 	log, err = helpers.ReplaceVars(log, vars, functions.GetFuncMap())

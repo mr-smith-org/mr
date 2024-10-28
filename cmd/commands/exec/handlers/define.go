@@ -1,11 +1,22 @@
-package execHandlers
+package handlers
 
 import (
 	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
 	"github.com/arthurbcp/kuma/v2/cmd/constants"
 )
 
-func HandleDefine(params map[string]interface{}, vars map[string]interface{}) error {
+type DefineHandler struct {
+}
+
+func NewDefineHandler() *DefineHandler {
+	return &DefineHandler{}
+}
+
+func (h *DefineHandler) Handle(data any, vars map[string]any) error {
+	return handleDefine(data.(map[string]interface{}), vars)
+}
+
+func handleDefine(params map[string]interface{}, vars map[string]interface{}) error {
 	data := vars["data"].(map[string]interface{})
 	variable, err := execBuilders.BuildStringValue("variable", params, vars, true, constants.DefineHandler)
 	if err != nil {

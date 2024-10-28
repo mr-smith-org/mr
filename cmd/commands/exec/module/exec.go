@@ -3,7 +3,7 @@ package execModule
 import (
 	"os"
 
-	execHandlers "github.com/arthurbcp/kuma/v2/cmd/commands/exec/handlers"
+	handlers "github.com/arthurbcp/kuma/v2/cmd/commands/exec/handlers"
 	"github.com/arthurbcp/kuma/v2/cmd/shared"
 	"github.com/arthurbcp/kuma/v2/cmd/ui/selectInput"
 	"github.com/arthurbcp/kuma/v2/cmd/ui/utils/program"
@@ -32,7 +32,12 @@ func Execute() {
 	vars := map[string]interface{}{
 		"data": map[string]interface{}{},
 	}
-	execHandlers.HandleRun(shared.Run, shared.Module, vars)
+	hdl := handlers.NewRunHandler(shared.Run, shared.Module)
+	err := hdl.Handle(nil, vars)
+	if err != nil {
+		style.ErrorPrint(err.Error())
+		os.Exit(1)
+	}
 }
 
 func handleTea() string {

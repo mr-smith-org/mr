@@ -1,4 +1,4 @@
-package execFormHandlers
+package handlers
 
 import (
 	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
@@ -6,7 +6,18 @@ import (
 	"github.com/charmbracelet/huh"
 )
 
-func HandleMultiSelect(input map[string]interface{}, vars map[string]interface{}) (*huh.MultiSelect[string], string, *[]string, error) {
+type MultiSelectHandler struct {
+}
+
+func NewMultiSelectHandler() *MultiSelectHandler {
+	return &MultiSelectHandler{}
+}
+
+func (h *MultiSelectHandler) Handle(data any, vars map[string]any) (huh.Field, string, any, error) {
+	return handleMultiSelect(data.(map[string]interface{}), vars)
+}
+
+func handleMultiSelect(input map[string]interface{}, vars map[string]interface{}) (huh.Field, string, any, error) {
 	var err error
 
 	label, err := execBuilders.BuildStringValue("label", input, vars, false, constants.MultiSelectComponent)
@@ -54,7 +65,7 @@ func HandleMultiSelect(input map[string]interface{}, vars map[string]interface{}
 			h.Limit(limit)
 		}
 
-		return h, out, &outValue, nil
+		return h, out, outValue, nil
 	}
 	return nil, out, nil, nil
 }

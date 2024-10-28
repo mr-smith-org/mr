@@ -1,4 +1,4 @@
-package execHandlers
+package handlers
 
 import (
 	"fmt"
@@ -15,7 +15,18 @@ import (
 	"github.com/spf13/afero"
 )
 
-func HandleLoad(load map[string]interface{}, vars map[string]interface{}) error {
+type LoadHandler struct {
+}
+
+func NewLoadHandler() *LoadHandler {
+	return &LoadHandler{}
+}
+
+func (h *LoadHandler) Handle(data any, vars map[string]any) error {
+	return handleLoad(data.(map[string]interface{}), vars)
+}
+
+func handleLoad(load map[string]interface{}, vars map[string]interface{}) error {
 	var err error
 	data := vars["data"].(map[string]interface{})
 	fs := filesystem.NewFileSystem(afero.NewOsFs())

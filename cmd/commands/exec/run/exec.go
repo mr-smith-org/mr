@@ -3,7 +3,6 @@ package execRun
 import (
 	"os"
 
-	execHandlers "github.com/arthurbcp/kuma/v2/cmd/commands/exec/handlers"
 	"github.com/arthurbcp/kuma/v2/cmd/shared"
 	"github.com/arthurbcp/kuma/v2/cmd/ui/selectInput"
 	"github.com/arthurbcp/kuma/v2/cmd/ui/utils/program"
@@ -12,6 +11,8 @@ import (
 	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
 	"github.com/arthurbcp/kuma/v2/pkg/style"
 	tea "github.com/charmbracelet/bubbletea"
+
+	handlers "github.com/arthurbcp/kuma/v2/cmd/commands/exec/handlers"
 
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
@@ -32,7 +33,8 @@ func Execute() {
 	vars := map[string]interface{}{
 		"data": map[string]interface{}{},
 	}
-	err := execHandlers.HandleRun(shared.Run, "", vars)
+	hdl := handlers.NewRunHandler(shared.Run, "")
+	err := hdl.Handle(nil, vars)
 	if err != nil {
 		style.ErrorPrint(err.Error())
 		os.Exit(1)

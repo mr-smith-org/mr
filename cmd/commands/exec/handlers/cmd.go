@@ -1,4 +1,4 @@
-package execHandlers
+package handlers
 
 import (
 	"fmt"
@@ -10,7 +10,18 @@ import (
 	"github.com/arthurbcp/kuma/v2/pkg/style"
 )
 
-func HandleCommand(cmdStr string, vars map[string]interface{}) error {
+type CmdHandler struct {
+}
+
+func NewCmdHandler() *CmdHandler {
+	return &CmdHandler{}
+}
+
+func (h *CmdHandler) Handle(data any, vars map[string]any) error {
+	return handleCommand(data.(string), vars)
+}
+
+func handleCommand(cmdStr string, vars map[string]interface{}) error {
 	var err error
 
 	cmdStr, err = helpers.ReplaceVars(cmdStr, vars, functions.GetFuncMap())
