@@ -12,6 +12,8 @@ func GetFuncMap() template.FuncMap {
 	fnMap["getRefFrom"] = GetRefFrom
 	fnMap["getPathsByTag"] = GetPathsByTag
 	fnMap["getParamsByType"] = GetParamsByType
+	fnMap["getAllTags"] = GetAllTags
+	fnMap["getRefsList"] = GetRefsList
 	fnMap["groupByKey"] = GroupByKey
 	fnMap["getFileContent"] = GetFileContent
 	fnMap["getFilesList"] = GetFilesList
