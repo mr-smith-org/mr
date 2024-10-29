@@ -3,9 +3,9 @@ package services
 import (
 	"fmt"
 
-	"github.com/arthurbcp/kuma/v2/internal/domain"
-	"github.com/arthurbcp/kuma/v2/internal/helpers"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/internal/domain"
+	"github.com/kuma-framework/kuma/v2/internal/helpers"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 )
 
 type RunService struct {

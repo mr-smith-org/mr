@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/helpers"
-	"github.com/arthurbcp/kuma/v2/pkg/functions"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/cmd/shared"
+	"github.com/kuma-framework/kuma/v2/internal/helpers"
+	"github.com/kuma-framework/kuma/v2/pkg/functions"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 )
 
 type CmdHandler struct {

@@ -37,7 +37,7 @@ Prompts the user for input during the execution of the Run.
 ```yaml
 - input:
     label: "What is the name of your project's package?"
-    out: packageName # Example: github.com/arthurbcp/kuma/v2-hello-world
+    out: packageName # Example: github.com/kuma-framework/kuma/v2-hello-world
 ```
 
 **Fields:**
@@ -74,7 +74,7 @@ select-runtime:
 Logs a message to the console.
 
 ```yaml
-- log: "Creating structure for {{.data.packageName}}" # Example: Creating structure for github.com/arthurbcp/kuma/v2-hello-world
+- log: "Creating structure for {{.data.packageName}}" # Example: Creating structure for github.com/kuma-framework/kuma/v2-hello-world
 ```
 
 **Fields:**
@@ -173,7 +173,7 @@ kuma exec
 
 ### Run that extracts variables from a swagger file
 
-Check out the builders and templates used by cloning this [repository](https://github.com/arthurbcp/kuma/v2-typescript-rest-services) or via the command `kuma get -t kuma-typescript-rest-services`.
+Check out the builders and templates used by cloning this [repository](https://github.com/kuma-framework/kuma/v2-typescript-rest-services) or via the command `kuma get -t kuma-typescript-rest-services`.
 
 ```yaml
 initial:

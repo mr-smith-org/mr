@@ -7,7 +7,7 @@ import (
 	"os" // Import the os package
 	"os/exec"
 
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/spf13/afero"
 )
 

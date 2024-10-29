@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/arthurbcp/kuma/v2/cmd/commands/create"
-	execRun "github.com/arthurbcp/kuma/v2/cmd/commands/exec"
-	"github.com/arthurbcp/kuma/v2/cmd/commands/modify"
-	"github.com/arthurbcp/kuma/v2/cmd/commands/module"
-	"github.com/arthurbcp/kuma/v2/internal/debug"
+	"github.com/kuma-framework/kuma/v2/cmd/commands/create"
+	execRun "github.com/kuma-framework/kuma/v2/cmd/commands/exec"
+	"github.com/kuma-framework/kuma/v2/cmd/commands/modify"
+	"github.com/kuma-framework/kuma/v2/cmd/commands/module"
+	"github.com/kuma-framework/kuma/v2/internal/debug"
 	"github.com/spf13/cobra"
 )
 

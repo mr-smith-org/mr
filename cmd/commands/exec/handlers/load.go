@@ -6,11 +6,11 @@ import (
 	"os"
 	"strings"
 
-	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
-	"github.com/arthurbcp/kuma/v2/cmd/constants"
-	"github.com/arthurbcp/kuma/v2/internal/helpers"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
+	"github.com/kuma-framework/kuma/v2/cmd/constants"
+	"github.com/kuma-framework/kuma/v2/internal/helpers"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/charmbracelet/huh/spinner"
 	"github.com/spf13/afero"
 )

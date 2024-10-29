@@ -3,14 +3,14 @@ package handlers
 import (
 	"fmt"
 
-	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
-	"github.com/arthurbcp/kuma/v2/cmd/commands/modify"
-	"github.com/arthurbcp/kuma/v2/cmd/constants"
-	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/helpers"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
-	"github.com/arthurbcp/kuma/v2/pkg/functions"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
+	"github.com/kuma-framework/kuma/v2/cmd/commands/modify"
+	"github.com/kuma-framework/kuma/v2/cmd/constants"
+	"github.com/kuma-framework/kuma/v2/cmd/shared"
+	"github.com/kuma-framework/kuma/v2/internal/helpers"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/functions"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/spf13/afero"
 )
 

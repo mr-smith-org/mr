@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/arthurbcp/kuma/v2/cmd/ui/utils/program"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 )

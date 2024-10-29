@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 	"gopkg.in/yaml.v3"
 )
 

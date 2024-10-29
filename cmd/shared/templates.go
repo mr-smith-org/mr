@@ -1,6 +1,6 @@
 package shared
 
-import "github.com/arthurbcp/kuma/v2/internal/domain"
+import "github.com/kuma-framework/kuma/v2/internal/domain"
 
 var Templates = map[string]domain.Template{
 	"kuma-framework/kuma-typescript-rest-services": domain.NewTemplate(

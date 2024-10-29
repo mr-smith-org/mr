@@ -5,10 +5,10 @@ package selectInput
 import (
 	"fmt"
 
-	"github.com/arthurbcp/kuma/v2/cmd/ui/textInput"
-	"github.com/arthurbcp/kuma/v2/cmd/ui/utils/program"
-	"github.com/arthurbcp/kuma/v2/cmd/ui/utils/steps"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/cmd/ui/textInput"
+	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
+	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/steps"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	tea "github.com/charmbracelet/bubbletea"
 )
 

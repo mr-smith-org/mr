@@ -1,4 +1,4 @@
-module github.com/arthurbcp/kuma/v2
+module github.com/kuma-framework/kuma/v2
 
 go 1.23
 

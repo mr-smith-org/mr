@@ -4,7 +4,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/arthurbcp/kuma/v2/pkg/functions"
+	"github.com/kuma-framework/kuma/v2/pkg/functions"
 )
 
 func ReplaceVars(text string, vars interface{}, funcs template.FuncMap) (string, error) {

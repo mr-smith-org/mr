@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/charmbracelet/huh/spinner"
 )
 

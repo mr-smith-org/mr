@@ -5,11 +5,11 @@ import (
 	"log"
 	"os"
 
-	"github.com/arthurbcp/kuma/v2/cmd/constants"
-	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/domain"
-	"github.com/arthurbcp/kuma/v2/internal/services"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/cmd/constants"
+	"github.com/kuma-framework/kuma/v2/cmd/shared"
+	"github.com/kuma-framework/kuma/v2/internal/domain"
+	"github.com/kuma-framework/kuma/v2/internal/services"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/afero"
 )

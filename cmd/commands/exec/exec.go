@@ -1,8 +1,8 @@
 package exec
 
 import (
-	execModule "github.com/arthurbcp/kuma/v2/cmd/commands/exec/module"
-	execRun "github.com/arthurbcp/kuma/v2/cmd/commands/exec/run"
+	execModule "github.com/kuma-framework/kuma/v2/cmd/commands/exec/module"
+	execRun "github.com/kuma-framework/kuma/v2/cmd/commands/exec/run"
 	"github.com/spf13/cobra"
 )
 

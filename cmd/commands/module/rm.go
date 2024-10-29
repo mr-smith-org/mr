@@ -3,10 +3,10 @@ package module
 import (
 	"os"
 
-	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/services"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
-	"github.com/arthurbcp/kuma/v2/pkg/style"
+	"github.com/kuma-framework/kuma/v2/cmd/shared"
+	"github.com/kuma-framework/kuma/v2/internal/services"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )

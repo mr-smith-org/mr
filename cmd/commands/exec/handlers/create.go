@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	execBuilders "github.com/arthurbcp/kuma/v2/cmd/commands/exec/builders"
-	"github.com/arthurbcp/kuma/v2/cmd/constants"
-	"github.com/arthurbcp/kuma/v2/cmd/shared"
-	"github.com/arthurbcp/kuma/v2/internal/domain"
-	"github.com/arthurbcp/kuma/v2/internal/handlers"
-	"github.com/arthurbcp/kuma/v2/pkg/filesystem"
+	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
+	"github.com/kuma-framework/kuma/v2/cmd/constants"
+	"github.com/kuma-framework/kuma/v2/cmd/shared"
+	"github.com/kuma-framework/kuma/v2/internal/domain"
+	"github.com/kuma-framework/kuma/v2/internal/handlers"
+	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 
