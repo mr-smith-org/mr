@@ -12,8 +12,7 @@ import (
 )
 
 var (
-	Module             string
-	RemoveGitSubmodule bool
+	Module string
 )
 
 // Add a Kuma module from a GitHub repository
@@ -21,24 +20,23 @@ var ModuleRmCmd = &cobra.Command{
 	Use:   "rm",
 	Short: "Remove a Kuma module",
 	Run: func(cmd *cobra.Command, args []string) {
-		if Module != "" {
-			err := RemoveModule(Module)
-			if err != nil {
-				style.ErrorPrint("error removing module: " + err.Error())
-				os.Exit(1)
-			}
+		if Module == "" {
+			style.ErrorPrint("module is required")
+			os.Exit(1)
+		}
+		err := removeModule(Module)
+		if err != nil {
+			style.ErrorPrint("error removing module: " + err.Error())
+			os.Exit(1)
 		}
 	},
 }
 
-func RemoveModule(module string) error {
-	if RemoveGitSubmodule {
-		if err := removeGitSubmodule(module); err != nil {
-			return err
-		}
-	}
-	// Remove the module from the kuma-modules.yaml file
+func removeModule(module string) error {
 	moduleService := services.NewModuleService(shared.KumaFilesPath, filesystem.NewFileSystem(afero.NewOsFs()))
+	if err := shared.RunCommand("rm", "-rf", shared.KumaFilesPath+"/"+module); err != nil {
+		return err
+	}
 	err := moduleService.Remove(module)
 	if err != nil {
 		return err
@@ -46,32 +44,8 @@ func RemoveModule(module string) error {
 	return nil
 }
 
-// remove git submodule removes a submodule from Kuma
-func removeGitSubmodule(module string) error {
-	// Full path to the submodule inside .kuma
-	fullSubmodulePath := shared.KumaFilesPath + "/" + module
-
-	// 1. Remove submodule config from .git/config
-	if err := shared.RunCommand("git", "config", "--remove-section", "submodule."+fullSubmodulePath); err != nil {
-		return err
-	}
-
-	// 2. Remove submodule entry from .gitmodules if it exists
-	if err := shared.RunCommand("git", "config", "-f", ".gitmodules", "--remove-section", "submodule."+fullSubmodulePath); err != nil {
-		return err
-	}
-
-	// 3. Remove the submodule from git cache
-	if err := shared.RunCommand("git", "rm", "--cached", fullSubmodulePath); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // init sets up flags for the 'rm' subcommand and binds them to variables.
 func init() {
 	// Module name
 	ModuleRmCmd.Flags().StringVarP(&Module, "module", "m", "", "module to remove")
-	ModuleRmCmd.Flags().BoolVarP(&RemoveGitSubmodule, "rm-git-submodule", "", false, "remove git submodule")
 }

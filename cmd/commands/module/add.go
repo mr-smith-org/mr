@@ -64,7 +64,7 @@ func download(cmd *cobra.Command) {
 		os.Exit(1)
 	}
 
-	style.LogPrint("getting templates from github repository as a submodule...")
+	style.LogPrint("getting templates from github repository...")
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 
 	err := fs.CreateDirectoryIfNotExists(shared.KumaFilesPath)
@@ -73,9 +73,9 @@ func download(cmd *cobra.Command) {
 		os.Exit(1)
 	}
 
-	err = addGitSubmodule(Repository)
+	err = addModule(Repository)
 	if err != nil {
-		style.ErrorPrint("error adding submodule: " + err.Error())
+		style.ErrorPrint("error adding module: " + err.Error())
 		os.Exit(1)
 	}
 	style.CheckMarkPrint("templates downloaded successfully!\n")
@@ -92,10 +92,13 @@ func download(cmd *cobra.Command) {
 	os.Exit(0)
 }
 
-func addGitSubmodule(module string) error {
+func addModule(module string) error {
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	moduleService := services.NewModuleService(shared.KumaFilesPath, fs)
-	if err := shared.RunCommand("git", "submodule", "add", shared.GitHubURL+"/"+module, shared.KumaFilesPath+"/"+moduleService.GetModuleName(module)); err != nil {
+	if err := shared.RunCommand("git", "clone", shared.GitHubURL+"/"+module, shared.KumaFilesPath+"/"+moduleService.GetModuleName(module)); err != nil {
+		return err
+	}
+	if err := shared.RunCommand("rm", "-rf", shared.KumaFilesPath+"/"+moduleService.GetModuleName(module)+"/.git"); err != nil {
 		return err
 	}
 	return nil
