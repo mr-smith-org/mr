@@ -41,7 +41,13 @@ commit:
         from: ".kuma/templates/message.gtpl"
         out: message
 
-    - log: "{{.data.message}}"
+    - form:
+        - confirm:
+              label: "Do you want to commit this?"
+              description: "{{.data.message.content}}"
+              affirmative: "Yes!"
+              negative: "No!"
+              out: breaking
 
 
 describe-breaking-change:

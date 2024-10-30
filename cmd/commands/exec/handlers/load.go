@@ -6,12 +6,13 @@ import (
 	"os"
 	"strings"
 
+	"github.com/charmbracelet/huh/spinner"
 	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
 	"github.com/kuma-framework/kuma/v2/cmd/constants"
 	"github.com/kuma-framework/kuma/v2/internal/helpers"
 	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/functions"
 	"github.com/kuma-framework/kuma/v2/pkg/style"
-	"github.com/charmbracelet/huh/spinner"
 	"github.com/spf13/afero"
 )
 
@@ -44,7 +45,7 @@ func handleLoad(load map[string]interface{}, vars map[string]interface{}) error 
 	var fileVars map[string]interface{}
 	parsedURI, err := url.ParseRequestURI(from)
 	if err != nil {
-		fileVars, err = helpers.UnmarshalFile(from, fs)
+		fileVars, err = helpers.UnmarshalFileAndReplaceVars(from, vars, fs)
 		if err != nil {
 			return fmt.Errorf("[handler:load] - parsing file error: %s", err.Error())
 		}
@@ -55,6 +56,11 @@ func handleLoad(load map[string]interface{}, vars map[string]interface{}) error 
 				varsContent, err := fs.ReadFileFromURL(from)
 				if err != nil {
 					style.ErrorPrint("[handler:load] - reading file error: " + err.Error())
+					os.Exit(1)
+				}
+				varsContent, err = helpers.ReplaceVars(varsContent, vars, functions.GetFuncMap())
+				if err != nil {
+					style.ErrorPrint("[handler:load] - parsing file error: " + err.Error())
 					os.Exit(1)
 				}
 				splitURIPath := strings.Split(parsedURI.Path, "/")
@@ -70,6 +76,7 @@ func handleLoad(load map[string]interface{}, vars map[string]interface{}) error 
 			return fmt.Errorf("[handler:load] - downloading variables file error: %s", err.Error())
 		}
 	}
+
 	data[out] = fileVars
 	return nil
 }
