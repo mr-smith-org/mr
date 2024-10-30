@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"encoding/json"
-	"fmt"
 	"path/filepath"
 
 	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
@@ -40,7 +39,9 @@ func UnmarshalByExt(file string, configData []byte) (map[string]interface{}, err
 		}
 		return data, nil
 	default:
-		return nil, fmt.Errorf("invalid file extension: %s", file)
+		res := make(map[string]interface{})
+		res["content"] = configData
+		return res, nil
 	}
 }
 
