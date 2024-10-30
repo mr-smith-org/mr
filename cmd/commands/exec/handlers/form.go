@@ -3,11 +3,11 @@ package handlers
 import (
 	"fmt"
 
+	"github.com/charmbracelet/huh"
 	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
 	"github.com/kuma-framework/kuma/v2/cmd/constants"
 	"github.com/kuma-framework/kuma/v2/cmd/shared"
 	"github.com/kuma-framework/kuma/v2/pkg/style"
-	"github.com/charmbracelet/huh"
 )
 
 type FormHandler struct {
@@ -18,7 +18,10 @@ func NewFormHandler() *FormHandler {
 }
 
 func (h *FormHandler) Handle(data any, vars map[string]any) error {
-	return handleForm(data.(map[string]interface{}), vars)
+	if data, ok := data.(map[string]interface{}); ok {
+		return handleForm(data, vars)
+	}
+	return fmt.Errorf("invalid data type: %T", data)
 }
 
 func handleForm(formData map[string]interface{}, vars map[string]interface{}) error {
