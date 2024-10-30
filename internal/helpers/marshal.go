@@ -40,7 +40,7 @@ func UnmarshalByExt(file string, configData []byte) (map[string]interface{}, err
 		return data, nil
 	default:
 		res := make(map[string]interface{})
-		res["content"] = configData
+		res["content"] = string(configData)
 		return res, nil
 	}
 }

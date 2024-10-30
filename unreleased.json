@@ -1,1 +1,1 @@
-{ "data": []}
+{ "data": [{ "type": "Added", "description": "Load > If the extension is not .json, .yaml, or .yml, load the content of the file into a variable named content."  }]}
