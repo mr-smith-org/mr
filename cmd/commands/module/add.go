@@ -3,6 +3,7 @@ package module
 import (
 	"os"
 
+	tea "github.com/charmbracelet/bubbletea"
 	execModule "github.com/kuma-framework/kuma/v2/cmd/commands/exec/module"
 	"github.com/kuma-framework/kuma/v2/cmd/shared"
 	"github.com/kuma-framework/kuma/v2/cmd/ui/selectInput"
@@ -11,7 +12,6 @@ import (
 	"github.com/kuma-framework/kuma/v2/internal/services"
 	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 	"github.com/kuma-framework/kuma/v2/pkg/style"
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
@@ -35,7 +35,7 @@ func handleTea() string {
 	program := program.NewProgram()
 	var options = make([]steps.Item, 0)
 
-	for repository, template := range shared.Templates {
+	for repository, template := range shared.Modules {
 		options = append(options, steps.NewItem(
 			template.Name,
 			repository,
