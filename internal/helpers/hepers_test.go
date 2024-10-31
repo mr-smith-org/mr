@@ -157,3 +157,44 @@ func TestReplaceVars(t *testing.T) {
 		t.Errorf("ReplaceVars() = %v, want %v", result, expected)
 	}
 }
+
+func TestConverValue(t *testing.T) {
+	strValue := "value"
+	boolValue := true
+	intValue := 123
+	floatValue := 123.456
+	sliceValue := []interface{}{"value1", 123, true}
+	mapValue := map[string]interface{}{
+		"key1": "value1",
+		"key2": 123,
+		"key3": true,
+	}
+	data := map[string]interface{}{
+		"data": map[string]interface{}{
+			"str":        &strValue,
+			"boolValue":  &boolValue,
+			"intValue":   &intValue,
+			"floatValue": &floatValue,
+			"slice":      &sliceValue,
+			"mapValue":   &mapValue,
+		},
+	}
+	expected := map[string]interface{}{
+		"data": map[string]interface{}{
+			"str":        strValue,
+			"boolValue":  boolValue,
+			"intValue":   intValue,
+			"floatValue": floatValue,
+			"slice":      []interface{}{"value1", 123, true},
+			"mapValue": map[string]interface{}{
+				"key1": "value1",
+				"key2": 123,
+				"key3": true,
+			},
+		},
+	}
+	result := convertValue(data)
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("convertValue() = %v, want %v", result, expected)
+	}
+}
