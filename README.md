@@ -248,9 +248,10 @@ kuma get --template=kuma-typescript-rest-services
 
 #### Official Templates
 
-- **[Hello World](https://github.com/kuma-framework/kuma/v2-hello-world):** A simple Hello World in Go.
-- **[OpenAPI 2.0 TypeScript Services](https://github.com/kuma-framework/kuma/v2-typescript-rest-services):** Create a TypeScript library with typed services for all endpoints described in an Open API 2.0 file.
-- **[Changelog Generator](https://github.com/kuma-framework/kuma/v2-changelog-generator):** Helper to write a good changelog to your project.
+- **[Hello World](https://github.com/kuma-framework/kuma-hello-world):** A simple Hello World in Go.
+- **[OpenAPI 2.0 TypeScript Services](https://github.com/kuma-framework/kuma-typescript-rest-services):** Create a TypeScript library with typed services for all endpoints described in an Open API 2.0 file.
+- **[Changelog Generator](https://github.com/kuma-framework/kuma-changelog-generator):** Helper to write a good changelog to your project.
+- **[Commit Standardizer](https://github.com/kuma-framework/kuma-commit-standardizer):** Write conventional commits for your projects.
 
 ## Contribution
 
