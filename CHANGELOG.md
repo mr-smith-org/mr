@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- /UNRELEASED -->
 
 <!-- NEXT RELEASE -->
+## [v2.3.0] - 2024-10-31
+
+### Added
+    - Official modules > Commit Standardizer
+    - Load > If the extension is not .json, .yaml, or .yml, load the content of the file into a variable named content.
+    
 ## [v2.2.1] - 2024-10-28
 
 ### Fixed
