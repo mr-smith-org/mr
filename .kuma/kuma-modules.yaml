@@ -11,3 +11,16 @@ kuma-changelog-generator:
             description: ""
             file: change-generator-runs.yaml
     version: 0.0.1
+kuma-commit-standardizer:
+    description: Write conventional commits for your projects with a friendly TUI.
+    runs:
+        commit:
+            description: Write conventional commits for your projects with a friendly TUI.
+            file: main.yaml
+        create-commit:
+            description: ""
+            file: main.yaml
+        describe-breaking-change:
+            description: ""
+            file: main.yaml
+    version: 0.0.1

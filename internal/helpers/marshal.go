@@ -2,12 +2,30 @@ package helpers
 
 import (
 	"encoding/json"
-	"fmt"
 	"path/filepath"
 
 	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/kuma-framework/kuma/v2/pkg/functions"
 	"gopkg.in/yaml.v3"
 )
+
+func UnmarshalFileAndReplaceVars(fileName string, vars map[string]interface{}, fs filesystem.FileSystemInterface) (map[string]interface{}, error) {
+	// Read the content of the OpenAPI file.
+	fileContent, err := fs.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
+	fileContent, err = ReplaceVars(fileContent, vars, functions.GetFuncMap())
+	if err != nil {
+		return nil, err
+	}
+	// Unmarshal the JSON or YAML content into a generic map.
+	fileData, err := UnmarshalByExt(fileName, []byte(fileContent))
+	if err != nil {
+		return nil, err
+	}
+	return fileData, nil
+}
 
 func UnmarshalFile(fileName string, fs filesystem.FileSystemInterface) (map[string]interface{}, error) {
 	// Read the content of the OpenAPI file.
@@ -40,7 +58,9 @@ func UnmarshalByExt(file string, configData []byte) (map[string]interface{}, err
 		}
 		return data, nil
 	default:
-		return nil, fmt.Errorf("invalid file extension: %s", file)
+		res := make(map[string]interface{})
+		res["content"] = string(configData)
+		return res, nil
 	}
 }
 
