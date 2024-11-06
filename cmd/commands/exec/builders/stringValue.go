@@ -3,8 +3,8 @@ package execBuilders
 import (
 	"fmt"
 
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/functions"
 )
 
 func BuildStringValue(key string, input map[string]interface{}, vars map[string]interface{}, required bool, component string) (string, error) {

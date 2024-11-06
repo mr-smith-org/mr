@@ -7,7 +7,7 @@ import (
 	"os" // Import the os package
 	"os/exec"
 
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 

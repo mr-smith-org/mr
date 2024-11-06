@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mr-smith/mr/cmd/commands/create"
-	execRun "github.com/mr-smith/mr/cmd/commands/exec"
-	"github.com/mr-smith/mr/cmd/commands/modify"
-	"github.com/mr-smith/mr/cmd/commands/module"
-	"github.com/mr-smith/mr/internal/debug"
+	"github.com/mr-smith-org/mr/cmd/commands/create"
+	execRun "github.com/mr-smith-org/mr/cmd/commands/exec"
+	"github.com/mr-smith-org/mr/cmd/commands/modify"
+	"github.com/mr-smith-org/mr/cmd/commands/module"
+	"github.com/mr-smith-org/mr/internal/debug"
 	"github.com/spf13/cobra"
 )
 

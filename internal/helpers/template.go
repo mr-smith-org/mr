@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/functions"
 )
 
 func convertValue(value interface{}) interface{} {

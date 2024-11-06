@@ -1,4 +1,4 @@
-module github.com/mr-smith/mr
+module github.com/mr-smith-org/mr
 
 go 1.23
 

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"path/filepath"
 
-	"github.com/mr-smith/mr/pkg/filesystem"
-	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/pkg/functions"
 	"gopkg.in/yaml.v3"
 )
 

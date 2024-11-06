@@ -1,6 +1,6 @@
 package shared
 
-import "github.com/mr-smith/mr/internal/domain"
+import "github.com/mr-smith-org/mr/internal/domain"
 
 var Modules = map[string]domain.Template{
 	"mr-smith/typescript-rest-services": domain.NewTemplate(

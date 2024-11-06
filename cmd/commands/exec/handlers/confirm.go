@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"github.com/charmbracelet/huh"
-	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
-	"github.com/mr-smith/mr/cmd/constants"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith-org/mr/cmd/constants"
 )
 
 type ConfirmHandler struct {

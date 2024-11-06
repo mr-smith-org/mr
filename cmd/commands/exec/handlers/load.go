@@ -7,12 +7,12 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/huh/spinner"
-	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
-	"github.com/mr-smith/mr/cmd/constants"
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/filesystem"
-	"github.com/mr-smith/mr/pkg/functions"
-	"github.com/mr-smith/mr/pkg/style"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 

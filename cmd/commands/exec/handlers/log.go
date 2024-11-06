@@ -3,9 +3,9 @@ package handlers
 import (
 	"fmt"
 
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/functions"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/style"
 )
 
 type LogHandler struct {

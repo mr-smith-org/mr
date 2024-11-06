@@ -6,10 +6,10 @@ import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/mr-smith/mr/cmd/ui/textInput"
-	"github.com/mr-smith/mr/cmd/ui/utils/program"
-	"github.com/mr-smith/mr/cmd/ui/utils/steps"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/cmd/ui/textInput"
+	"github.com/mr-smith-org/mr/cmd/ui/utils/program"
+	"github.com/mr-smith-org/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith-org/mr/pkg/style"
 )
 
 // A Selection represents a choice made in a multiInput step

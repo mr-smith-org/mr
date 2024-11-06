@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 
