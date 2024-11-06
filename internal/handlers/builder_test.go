@@ -3,8 +3,8 @@ package handlers
 import (
 	"testing"
 
-	"github.com/mr-smith/mr/internal/domain"
-	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/internal/domain"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )

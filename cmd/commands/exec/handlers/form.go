@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/huh"
-	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
-	"github.com/mr-smith/mr/cmd/constants"
-	"github.com/mr-smith/mr/cmd/shared"
-	"github.com/mr-smith/mr/pkg/style"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
+	"github.com/mr-smith-org/mr/pkg/style"
 )
 
 type FormHandler struct {

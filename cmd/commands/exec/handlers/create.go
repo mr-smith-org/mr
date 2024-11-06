@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
-	"github.com/mr-smith/mr/cmd/constants"
-	"github.com/mr-smith/mr/cmd/shared"
-	"github.com/mr-smith/mr/internal/domain"
-	"github.com/mr-smith/mr/internal/handlers"
-	"github.com/mr-smith/mr/pkg/filesystem"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
+	"github.com/mr-smith-org/mr/internal/domain"
+	"github.com/mr-smith-org/mr/internal/handlers"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 

@@ -3,9 +3,9 @@ package services
 import (
 	"fmt"
 
-	"github.com/mr-smith/mr/internal/domain"
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/internal/domain"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
 )
 
 type RunService struct {

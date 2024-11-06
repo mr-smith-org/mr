@@ -6,11 +6,11 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/mr-smith/mr/cmd/constants"
-	"github.com/mr-smith/mr/cmd/shared"
-	"github.com/mr-smith/mr/internal/domain"
-	"github.com/mr-smith/mr/internal/services"
-	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
+	"github.com/mr-smith-org/mr/internal/domain"
+	"github.com/mr-smith-org/mr/internal/services"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 

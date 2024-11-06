@@ -6,10 +6,10 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/mr-smith/mr/internal/domain"
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/functions"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/internal/domain"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 

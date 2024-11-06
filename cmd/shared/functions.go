@@ -8,7 +8,7 @@ import (
 	"os/exec"
 
 	"github.com/charmbracelet/huh/spinner"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/pkg/style"
 )
 
 func RunCommand(command string, args ...string) error {

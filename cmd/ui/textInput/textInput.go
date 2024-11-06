@@ -8,8 +8,8 @@ import (
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/mr-smith/mr/cmd/ui/utils/program"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/cmd/ui/utils/program"
+	"github.com/mr-smith-org/mr/pkg/style"
 )
 
 type (

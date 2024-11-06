@@ -4,15 +4,15 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/mr-smith/mr/cmd/shared"
-	"github.com/mr-smith/mr/cmd/ui/selectInput"
-	"github.com/mr-smith/mr/cmd/ui/utils/program"
-	"github.com/mr-smith/mr/cmd/ui/utils/steps"
-	"github.com/mr-smith/mr/internal/services"
-	"github.com/mr-smith/mr/pkg/filesystem"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/cmd/shared"
+	"github.com/mr-smith-org/mr/cmd/ui/selectInput"
+	"github.com/mr-smith-org/mr/cmd/ui/utils/program"
+	"github.com/mr-smith-org/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith-org/mr/internal/services"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/pkg/style"
 
-	handlers "github.com/mr-smith/mr/cmd/commands/exec/handlers"
+	handlers "github.com/mr-smith-org/mr/cmd/commands/exec/handlers"
 
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"

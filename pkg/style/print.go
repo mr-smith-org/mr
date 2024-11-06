@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gookit/color"
-	"github.com/mr-smith/mr/internal/debug"
+	"github.com/mr-smith-org/mr/internal/debug"
 )
 
 func PrintStyles() {

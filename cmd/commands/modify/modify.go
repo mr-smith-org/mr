@@ -5,11 +5,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/mr-smith/mr/cmd/shared"
-	"github.com/mr-smith/mr/internal/helpers"
-	"github.com/mr-smith/mr/pkg/filesystem"
-	"github.com/mr-smith/mr/pkg/functions"
-	"github.com/mr-smith/mr/pkg/style"
+	"github.com/mr-smith-org/mr/cmd/shared"
+	"github.com/mr-smith-org/mr/internal/helpers"
+	"github.com/mr-smith-org/mr/pkg/filesystem"
+	"github.com/mr-smith-org/mr/pkg/functions"
+	"github.com/mr-smith-org/mr/pkg/style"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )

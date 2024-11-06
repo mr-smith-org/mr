@@ -1,8 +1,8 @@
 package exec
 
 import (
-	execModule "github.com/mr-smith/mr/cmd/commands/exec/module"
-	execRun "github.com/mr-smith/mr/cmd/commands/exec/run"
+	execModule "github.com/mr-smith-org/mr/cmd/commands/exec/module"
+	execRun "github.com/mr-smith-org/mr/cmd/commands/exec/run"
 	"github.com/spf13/cobra"
 )
 
