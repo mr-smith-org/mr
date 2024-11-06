@@ -3,8 +3,8 @@ package execBuilders
 import (
 	"fmt"
 
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/functions"
 )
 
 func BuildStringValue(key string, input map[string]interface{}, vars map[string]interface{}, required bool, component string) (string, error) {

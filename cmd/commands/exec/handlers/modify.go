@@ -3,14 +3,14 @@ package handlers
 import (
 	"fmt"
 
-	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
-	"github.com/kuma-framework/kuma/v2/cmd/commands/modify"
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith/mr/cmd/commands/modify"
+	"github.com/mr-smith/mr/cmd/constants"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 
@@ -27,10 +27,10 @@ func (h *ModifyHandler) Handle(data any, vars map[string]any) error {
 }
 
 func handleModify(module string, data map[string]interface{}, vars map[string]interface{}) error {
-	path := shared.KumaFilesPath
+	path := shared.FilesPath
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if module != "" {
-		path = shared.KumaFilesPath + "/" + module + "/" + shared.KumaFilesPath
+		path = shared.FilesPath + "/" + module + "/" + shared.FilesPath
 	}
 	file, err := execBuilders.BuildStringValue("file", data, vars, true, constants.ModifyHandler)
 	if err != nil {

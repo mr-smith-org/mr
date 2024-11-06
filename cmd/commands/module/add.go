@@ -4,14 +4,14 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	execModule "github.com/kuma-framework/kuma/v2/cmd/commands/exec/module"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/selectInput"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/steps"
-	"github.com/kuma-framework/kuma/v2/internal/services"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	execModule "github.com/mr-smith/mr/cmd/commands/exec/module"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/cmd/ui/selectInput"
+	"github.com/mr-smith/mr/cmd/ui/utils/program"
+	"github.com/mr-smith/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith/mr/internal/services"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
@@ -22,7 +22,7 @@ var (
 
 var ModuleAddCmd = &cobra.Command{
 	Use:   "add",
-	Short: "Add a Kuma module from a GitHub repository",
+	Short: "Add an Mr. Smith module from a GitHub repository",
 	Run: func(cmd *cobra.Command, args []string) {
 		if Repository == "" {
 			Repository = handleTea()
@@ -67,9 +67,9 @@ func download(cmd *cobra.Command) {
 	style.LogPrint("getting templates from github repository...")
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 
-	err := fs.CreateDirectoryIfNotExists(shared.KumaFilesPath)
+	err := fs.CreateDirectoryIfNotExists(shared.FilesPath)
 	if err != nil {
-		style.ErrorPrint("error creating kuma files directory: " + err.Error())
+		style.ErrorPrint("error creating files directory: " + err.Error())
 		os.Exit(1)
 	}
 
@@ -80,11 +80,11 @@ func download(cmd *cobra.Command) {
 	}
 	style.CheckMarkPrint("templates downloaded successfully!\n")
 
-	moduleService := services.NewModuleService(shared.KumaFilesPath, fs)
+	moduleService := services.NewModuleService(shared.FilesPath, fs)
 	moduleName := moduleService.GetModuleName(Repository)
 	err = moduleService.Add(moduleName)
 	if err != nil {
-		style.ErrorPrint("error adding kuma module: " + err.Error())
+		style.ErrorPrint("error adding module: " + err.Error())
 		os.Exit(1)
 	}
 	shared.Module = moduleName
@@ -94,16 +94,16 @@ func download(cmd *cobra.Command) {
 
 func addModule(module string) error {
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
-	moduleService := services.NewModuleService(shared.KumaFilesPath, fs)
-	if err := shared.RunCommand("git", "clone", shared.GitHubURL+"/"+module, shared.KumaFilesPath+"/"+moduleService.GetModuleName(module)); err != nil {
+	moduleService := services.NewModuleService(shared.FilesPath, fs)
+	if err := shared.RunCommand("git", "clone", shared.GitHubURL+"/"+module, shared.FilesPath+"/"+moduleService.GetModuleName(module)); err != nil {
 		return err
 	}
-	if err := shared.RunCommand("rm", "-rf", shared.KumaFilesPath+"/"+moduleService.GetModuleName(module)+"/.git"); err != nil {
+	if err := shared.RunCommand("rm", "-rf", shared.FilesPath+"/"+moduleService.GetModuleName(module)+"/.git"); err != nil {
 		return err
 	}
 	return nil
 }
 
 func init() {
-	ModuleAddCmd.Flags().StringVarP(&Repository, "repository", "r", "", "Github repository with a Kuma module")
+	ModuleAddCmd.Flags().StringVarP(&Repository, "repository", "r", "", "Github repository with a Mr. Smith module")
 }

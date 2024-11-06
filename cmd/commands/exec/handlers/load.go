@@ -7,12 +7,12 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/huh/spinner"
-	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith/mr/cmd/constants"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 

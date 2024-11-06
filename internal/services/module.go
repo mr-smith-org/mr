@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/filesystem"
 	"gopkg.in/yaml.v3"
 )
 
@@ -25,7 +25,7 @@ func NewModuleService(path string, fs filesystem.FileSystemInterface) *ModuleSer
 }
 
 func (s *ModuleService) Add(newModule string) error {
-	modulesFile := shared.KumaFilesPath + "/kuma-modules.yaml"
+	modulesFile := shared.FilesPath + "/" + shared.ModulesFileName
 	_, err := s.fs.CreateFileIfNotExists(modulesFile)
 	if err != nil {
 		return err
@@ -55,7 +55,7 @@ func (s *ModuleService) Add(newModule string) error {
 }
 
 func (s *ModuleService) Remove(module string) error {
-	modulesFile := shared.KumaFilesPath + "/kuma-modules.yaml"
+	modulesFile := shared.FilesPath + "/" + shared.ModulesFileName
 	modules, err := helpers.UnmarshalFile(modulesFile, s.fs)
 	if err != nil {
 		return err
@@ -76,11 +76,11 @@ func (s *ModuleService) Remove(module string) error {
 }
 
 func (s *ModuleService) Get(module string) (domain.Module, error) {
-	configData, err := helpers.UnmarshalFile(s.path+"/"+module+"/kuma-config.yaml", s.fs)
+	configData, err := helpers.UnmarshalFile(s.path+"/"+module+"/"+shared.ConfigFileName, s.fs)
 	if err != nil {
 		return domain.Module{}, err
 	}
-	runsService := NewRunService(s.path+"/"+module+"/"+shared.KumaRunsPath, s.fs)
+	runsService := NewRunService(s.path+"/"+module+"/"+shared.RunsPath, s.fs)
 	runs, err := runsService.GetAll(false)
 	if err != nil {
 		return domain.Module{}, err
@@ -89,7 +89,7 @@ func (s *ModuleService) Get(module string) (domain.Module, error) {
 }
 
 func (s *ModuleService) GetAll() (map[string]domain.Module, error) {
-	modules, err := helpers.UnmarshalFile(shared.KumaFilesPath+"/kuma-modules.yaml", s.fs)
+	modules, err := helpers.UnmarshalFile(shared.FilesPath+"/"+shared.ModulesFileName, s.fs)
 	if err != nil {
 		return nil, err
 	}

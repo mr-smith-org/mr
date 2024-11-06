@@ -5,11 +5,11 @@ package selectInput
 import (
 	"fmt"
 
-	"github.com/kuma-framework/kuma/v2/cmd/ui/textInput"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/steps"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/mr-smith/mr/cmd/ui/textInput"
+	"github.com/mr-smith/mr/cmd/ui/utils/program"
+	"github.com/mr-smith/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith/mr/pkg/style"
 )
 
 // A Selection represents a choice made in a multiInput step

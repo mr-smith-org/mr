@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/mr-smith/mr/cmd/ui/utils/program"
+	"github.com/mr-smith/mr/pkg/style"
 )
 
 type (

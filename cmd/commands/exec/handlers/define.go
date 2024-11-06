@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
+	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith/mr/cmd/constants"
 )
 
 type DefineHandler struct {

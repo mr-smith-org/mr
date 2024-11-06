@@ -3,10 +3,10 @@ package module
 import (
 	"os"
 
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/services"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/services"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
@@ -15,10 +15,9 @@ var (
 	Module string
 )
 
-// Add a Kuma module from a GitHub repository
 var ModuleRmCmd = &cobra.Command{
 	Use:   "rm",
-	Short: "Remove a Kuma module",
+	Short: "Remove a Mr. Smith module",
 	Run: func(cmd *cobra.Command, args []string) {
 		if Module == "" {
 			style.ErrorPrint("module is required")
@@ -33,8 +32,8 @@ var ModuleRmCmd = &cobra.Command{
 }
 
 func removeModule(module string) error {
-	moduleService := services.NewModuleService(shared.KumaFilesPath, filesystem.NewFileSystem(afero.NewOsFs()))
-	if err := shared.RunCommand("rm", "-rf", shared.KumaFilesPath+"/"+module); err != nil {
+	moduleService := services.NewModuleService(shared.FilesPath, filesystem.NewFileSystem(afero.NewOsFs()))
+	if err := shared.RunCommand("rm", "-rf", shared.FilesPath+"/"+module); err != nil {
 		return err
 	}
 	err := moduleService.Remove(module)

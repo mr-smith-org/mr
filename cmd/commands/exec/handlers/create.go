@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/internal/handlers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith/mr/cmd/constants"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/internal/handlers"
+	"github.com/mr-smith/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 
@@ -23,10 +23,10 @@ func (h *CreateHandler) Handle(data any, vars map[string]any) error {
 }
 
 func handleCreate(module string, data map[string]interface{}, vars map[string]interface{}) error {
-	path := shared.KumaFilesPath
+	path := shared.FilesPath
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if module != "" {
-		path = shared.KumaFilesPath + "/" + module + "/" + shared.KumaFilesPath
+		path = shared.FilesPath + "/" + module + "/" + shared.FilesPath
 	}
 	builder, err := domain.NewBuilder(fs, domain.NewConfig(".", path))
 	if err != nil {

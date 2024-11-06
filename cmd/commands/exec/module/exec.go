@@ -3,15 +3,15 @@ package execModule
 import (
 	"os"
 
-	handlers "github.com/kuma-framework/kuma/v2/cmd/commands/exec/handlers"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/selectInput"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/steps"
-	"github.com/kuma-framework/kuma/v2/internal/services"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	tea "github.com/charmbracelet/bubbletea"
+	handlers "github.com/mr-smith/mr/cmd/commands/exec/handlers"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/cmd/ui/selectInput"
+	"github.com/mr-smith/mr/cmd/ui/utils/program"
+	"github.com/mr-smith/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith/mr/internal/services"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/style"
 
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
@@ -46,7 +46,7 @@ func handleTea() string {
 
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if shared.Module == "" {
-		modulesService := services.NewModuleService(shared.KumaFilesPath, fs)
+		modulesService := services.NewModuleService(shared.FilesPath, fs)
 		modules, err := modulesService.GetAll()
 		if err != nil {
 			style.ErrorPrint("getting modules error: " + err.Error())
@@ -75,7 +75,7 @@ func handleTea() string {
 		shared.Module = output.Choice
 	}
 
-	runService := services.NewRunService(shared.KumaFilesPath+"/"+shared.Module+"/"+shared.KumaRunsPath, fs)
+	runService := services.NewRunService(shared.FilesPath+"/"+shared.Module+"/"+shared.RunsPath, fs)
 	runs, err := runService.GetAll(true)
 	if err != nil {
 		style.ErrorPrint("getting runs error: " + err.Error())

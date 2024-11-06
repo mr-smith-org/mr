@@ -1,13 +1,12 @@
 package shared
 
 var (
-	KumaFilesPath string = ".kuma"
+	FilesPath       string = ".mr-smith"
+	RunsPath        string = FilesPath + "/runs"
+	ModulesFileName        = "mr-modules.yaml"
+	ConfigFileName         = "mr-config.yaml"
+	GitHubURL              = "https://github.com"
 
-	KumaRunsPath string = KumaFilesPath + "/runs"
-
-	OfficialTemplatesPath string = "official-templates.yaml"
-
-	Run string
-
+	Run    string
 	Module string
 )

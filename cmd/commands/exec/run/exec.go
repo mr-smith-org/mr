@@ -3,16 +3,16 @@ package execRun
 import (
 	"os"
 
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/selectInput"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/program"
-	"github.com/kuma-framework/kuma/v2/cmd/ui/utils/steps"
-	"github.com/kuma-framework/kuma/v2/internal/services"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/cmd/ui/selectInput"
+	"github.com/mr-smith/mr/cmd/ui/utils/program"
+	"github.com/mr-smith/mr/cmd/ui/utils/steps"
+	"github.com/mr-smith/mr/internal/services"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/style"
 
-	handlers "github.com/kuma-framework/kuma/v2/cmd/commands/exec/handlers"
+	handlers "github.com/mr-smith/mr/cmd/commands/exec/handlers"
 
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
@@ -46,7 +46,7 @@ func handleTea() string {
 	program := program.NewProgram()
 
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
-	runService := services.NewRunService(shared.KumaRunsPath, fs)
+	runService := services.NewRunService(shared.RunsPath, fs)
 	runs, err := runService.GetAll(true)
 	if err != nil {
 		style.ErrorPrint("getting runs error: " + err.Error())

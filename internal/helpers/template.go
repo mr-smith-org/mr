@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
+	"github.com/mr-smith/mr/pkg/functions"
 )
 
 func convertValue(value interface{}) interface{} {

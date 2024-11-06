@@ -5,12 +5,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/internal/services"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/mr-smith/mr/cmd/constants"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/internal/services"
+	"github.com/mr-smith/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 )
 
@@ -32,19 +32,19 @@ func handleRun(name, moduleName string, vars map[string]interface{}) error {
 	var run = &domain.Run{}
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	if moduleName != "" {
-		moduleService := services.NewModuleService(shared.KumaFilesPath, fs)
+		moduleService := services.NewModuleService(shared.FilesPath, fs)
 		modules, err := moduleService.GetAll()
 		if err != nil {
 			return err
 		}
 		module := modules[moduleName]
-		run, err = moduleService.GetRun(&module, name, shared.KumaFilesPath+"/"+moduleName+"/"+shared.KumaRunsPath)
+		run, err = moduleService.GetRun(&module, name, shared.FilesPath+"/"+moduleName+"/"+shared.RunsPath)
 
 		if err != nil {
 			return err
 		}
 	} else {
-		runService := services.NewRunService(shared.KumaRunsPath, fs)
+		runService := services.NewRunService(shared.RunsPath, fs)
 		run, err = runService.Get(name)
 		if err != nil {
 			return err

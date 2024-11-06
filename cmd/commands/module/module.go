@@ -4,7 +4,7 @@ import "github.com/spf13/cobra"
 
 var ModuleCmd = &cobra.Command{
 	Use:   "module",
-	Short: "Manage Kuma modules",
+	Short: "Manage modules",
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},

@@ -6,10 +6,10 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 )
 

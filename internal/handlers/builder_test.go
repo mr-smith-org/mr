@@ -3,8 +3,8 @@ package handlers
 import (
 	"testing"
 
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/pkg/filesystem"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )

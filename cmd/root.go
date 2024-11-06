@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/kuma-framework/kuma/v2/cmd/commands/create"
-	execRun "github.com/kuma-framework/kuma/v2/cmd/commands/exec"
-	"github.com/kuma-framework/kuma/v2/cmd/commands/modify"
-	"github.com/kuma-framework/kuma/v2/cmd/commands/module"
-	"github.com/kuma-framework/kuma/v2/internal/debug"
+	"github.com/mr-smith/mr/cmd/commands/create"
+	execRun "github.com/mr-smith/mr/cmd/commands/exec"
+	"github.com/mr-smith/mr/cmd/commands/modify"
+	"github.com/mr-smith/mr/cmd/commands/module"
+	"github.com/mr-smith/mr/internal/debug"
 	"github.com/spf13/cobra"
 )
 
@@ -19,8 +19,8 @@ const (
 )
 
 var rootCmd = &cobra.Command{
-	Use:  "kuma",
-	Long: fmt.Sprintf("%s \n\n Welcome to Kuma! \n A powerful CLI for generating project scaffolds based on Go templates.", UnicodeLogo),
+	Use:  "mr",
+	Long: fmt.Sprintf("%s \n\n Welcome to Mr Smith! \n A powerful CLI for generating project scaffolds based on Go templates.", UnicodeLogo),
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},

@@ -7,8 +7,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/charmbracelet/huh/spinner"
+	"github.com/mr-smith/mr/pkg/style"
 )
 
 func RunCommand(command string, args ...string) error {

@@ -1,7 +1,3 @@
-// create.go
-//
-// Package create defines the 'create' subcommand for the Kuma CLI.
-// It handles generating project scaffolds based on Go templates.
 package create
 
 import (
@@ -9,12 +5,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/internal/domain"
-	"github.com/kuma-framework/kuma/v2/internal/handlers"
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/internal/domain"
+	"github.com/mr-smith/mr/internal/handlers"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/style"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
@@ -65,12 +61,12 @@ func Create() {
 }
 
 // build initializes the Builder and triggers the build process.
-// It reads the Kuma configuration file and applies templates to create the project structure.
+// It reads the Mr. Sith configuration file and applies templates to create the project structure.
 func build() {
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
 	// Initialize a new Builder with the provided configurations.
-	builder, err := domain.NewBuilder(fs, domain.NewConfig(ProjectPath, shared.KumaFilesPath))
-	builder.SetBuilderDataFromFile(shared.KumaFilesPath+"/"+FromFile, TemplateVariables)
+	builder, err := domain.NewBuilder(fs, domain.NewConfig(ProjectPath, shared.FilesPath))
+	builder.SetBuilderDataFromFile(shared.FilesPath+"/"+FromFile, TemplateVariables)
 	if err != nil {
 		style.ErrorPrint(err.Error())
 		os.Exit(1)

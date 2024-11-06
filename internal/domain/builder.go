@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/kuma-framework/kuma/v2/internal/helpers"
-	"github.com/kuma-framework/kuma/v2/pkg/filesystem"
-	"github.com/kuma-framework/kuma/v2/pkg/functions"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
 	"github.com/mitchellh/mapstructure"
+	"github.com/mr-smith/mr/internal/helpers"
+	"github.com/mr-smith/mr/pkg/filesystem"
+	"github.com/mr-smith/mr/pkg/functions"
+	"github.com/mr-smith/mr/pkg/style"
 	"gopkg.in/yaml.v3"
 )
 

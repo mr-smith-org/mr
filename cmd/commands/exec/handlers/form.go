@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/huh"
-	execBuilders "github.com/kuma-framework/kuma/v2/cmd/commands/exec/builders"
-	"github.com/kuma-framework/kuma/v2/cmd/constants"
-	"github.com/kuma-framework/kuma/v2/cmd/shared"
-	"github.com/kuma-framework/kuma/v2/pkg/style"
+	execBuilders "github.com/mr-smith/mr/cmd/commands/exec/builders"
+	"github.com/mr-smith/mr/cmd/constants"
+	"github.com/mr-smith/mr/cmd/shared"
+	"github.com/mr-smith/mr/pkg/style"
 )
 
 type FormHandler struct {
@@ -79,7 +79,7 @@ func handleForm(formData map[string]interface{}, vars map[string]interface{}) er
 			Title(title).
 			Description(description),
 	)
-	form.WithTheme(style.KumaTheme())
+	form.WithTheme(style.Theme())
 	form.WithAccessible(accessibility)
 	err = form.Run()
 	if err != nil {

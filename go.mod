@@ -1,4 +1,4 @@
-module github.com/kuma-framework/kuma/v2
+module github.com/mr-smith/mr
 
 go 1.23
 

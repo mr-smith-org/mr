@@ -3,8 +3,8 @@ package style
 import (
 	"fmt"
 
-	"github.com/kuma-framework/kuma/v2/internal/debug"
 	"github.com/gookit/color"
+	"github.com/mr-smith/mr/internal/debug"
 )
 
 func PrintStyles() {
