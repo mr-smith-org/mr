@@ -14,16 +14,7 @@ import (
 	"github.com/mr-smith-org/mr/pkg/style"
 
 	"github.com/spf13/afero"
-	"github.com/spf13/cobra"
 )
-
-var ExecModuleCmd = &cobra.Command{
-	Use:   "module",
-	Short: "Execute a specific run from a module",
-	Run: func(cmd *cobra.Command, args []string) {
-		Execute()
-	},
-}
 
 func Execute() {
 	if shared.Run == "" || shared.Module == "" {
@@ -102,9 +93,4 @@ func handleTea() string {
 		os.Exit(1)
 	}
 	return output.Choice
-}
-
-func init() {
-	ExecModuleCmd.Flags().StringVarP(&shared.Run, "run", "r", "", "run to use")
-	ExecModuleCmd.Flags().StringVarP(&shared.Module, "module", "m", "", "runs module")
 }
