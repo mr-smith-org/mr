@@ -36,6 +36,16 @@ func handleMultiSelect(input map[string]interface{}, vars map[string]interface{}
 	if err != nil {
 		return nil, "", nil, err
 	}
+	optionsFrom, err := execBuilders.BuildStringValue("options-from", input, vars, false, constants.SelectComponent)
+	if err != nil {
+		return nil, "", nil, err
+	}
+	if optionsFrom != "" {
+		input["options"], err = handleOptionsFrom(optionsFrom, vars)
+		if err != nil {
+			return nil, "", nil, err
+		}
+	}
 	options := []huh.Option[string]{}
 	if mapOptions, ok := input["options"].([]interface{}); ok {
 		for _, option := range mapOptions {

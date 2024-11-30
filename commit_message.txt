@@ -1,3 +1,0 @@
-refactor(exec)!: transform module and run subcommands in command flags
-
-BREAKING CHANGE: the run and module subcommands is not available anymore
