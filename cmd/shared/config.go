@@ -9,4 +9,5 @@ var (
 
 	Run    string
 	Module string
+	Vars   = make(map[string]string)
 )

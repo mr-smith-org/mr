@@ -4,6 +4,7 @@ import (
 	"github.com/charmbracelet/huh"
 	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
 )
 
 type TextHandler struct {
@@ -36,6 +37,12 @@ func handleText(input map[string]interface{}, vars map[string]interface{}) (huh.
 	if err != nil {
 		return nil, "", nil, err
 	}
+
+	if shared.Vars[out] != "" {
+		outResult := shared.Vars[out]
+		return nil, out, &outResult, nil
+	}
+
 	var outValue string
 	h := huh.NewText().
 		Title(label).

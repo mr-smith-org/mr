@@ -2,6 +2,7 @@ package exec
 
 import (
 	"os"
+	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 	execModule "github.com/mr-smith-org/mr/cmd/commands/exec/module"
@@ -14,10 +15,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var varsSlice = make([]string, 0)
+
 var ExecCmd = &cobra.Command{
 	Use:   "exec",
 	Short: "Manage Mr. Smith execs",
 	Run: func(cmd *cobra.Command, args []string) {
+
+		if len(varsSlice) > 0 {
+			for _, v := range varsSlice {
+				splitVar := strings.Split(v, ":")
+				shared.Vars[splitVar[0]] = splitVar[1]
+			}
+		}
 		if shared.Run == "" && shared.Module == "" {
 			choice := handleTea()
 			if choice == "run" {
@@ -62,4 +72,5 @@ func handleTea() string {
 func init() {
 	ExecCmd.Flags().StringVarP(&shared.Run, "run", "r", "", "run to use")
 	ExecCmd.Flags().StringVarP(&shared.Module, "module", "m", "", "module to use")
+	ExecCmd.Flags().StringSliceVarP(&varsSlice, "vars", "v", []string{}, "variables to use")
 }

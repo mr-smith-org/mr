@@ -10,6 +10,7 @@ import (
 	"github.com/charmbracelet/huh/spinner"
 	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
 	"github.com/mr-smith-org/mr/internal/helpers"
 	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/mr-smith-org/mr/pkg/functions"
@@ -47,6 +48,11 @@ func handleSelect(input map[string]interface{}, vars map[string]interface{}) (hu
 	out, err := execBuilders.BuildStringValue("out", input, vars, true, constants.SelectComponent)
 	if err != nil {
 		return nil, "", nil, err
+	}
+
+	if shared.Vars[out] != "" {
+		outResult := shared.Vars[out]
+		return nil, out, &outResult, nil
 	}
 
 	options := []huh.Option[string]{}
