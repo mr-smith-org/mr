@@ -67,23 +67,27 @@ func handleForm(formData map[string]interface{}, vars map[string]interface{}) er
 				if err != nil {
 					return fmt.Errorf("[field:%s] - %s", key, err.Error())
 				}
-				huhFields = append(huhFields, huhField)
+				if huhField != nil {
+					huhFields = append(huhFields, huhField)
+				}
 				data[out] = outValue
 			} else {
 				return fmt.Errorf("invalid field type: %s", key)
 			}
 		}
 	}
-	form := huh.NewForm(
-		huh.NewGroup(huhFields...).
-			Title(title).
-			Description(description),
-	)
-	form.WithTheme(style.Theme())
-	form.WithAccessible(accessibility)
-	err = form.Run()
-	if err != nil {
-		return fmt.Errorf("error running form: %s", err.Error())
+	if len(huhFields) > 0 {
+		form := huh.NewForm(
+			huh.NewGroup(huhFields...).
+				Title(title).
+				Description(description),
+		)
+		form.WithTheme(style.Theme())
+		form.WithAccessible(accessibility)
+		err = form.Run()
+		if err != nil {
+			return fmt.Errorf("error running form: %s", err.Error())
+		}
 	}
 
 	return nil

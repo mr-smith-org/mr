@@ -1,9 +1,12 @@
 package handlers
 
 import (
+	"strings"
+
 	"github.com/charmbracelet/huh"
 	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
 )
 
 type MultiSelectHandler struct {
@@ -32,9 +35,25 @@ func handleMultiSelect(input map[string]interface{}, vars map[string]interface{}
 	if err != nil {
 		return nil, "", nil, err
 	}
+
+	if shared.Vars[out] != "" {
+		outResult := strings.Split(shared.Vars[out], "|")
+		return nil, out, &outResult, nil
+	}
+
 	limit, err := execBuilders.BuildIntValue("limit", input, vars, false, constants.MultiSelectComponent)
 	if err != nil {
 		return nil, "", nil, err
+	}
+	optionsFrom, err := execBuilders.BuildStringValue("options-from", input, vars, false, constants.SelectComponent)
+	if err != nil {
+		return nil, "", nil, err
+	}
+	if optionsFrom != "" {
+		input["options"], err = handleOptionsFrom(optionsFrom, vars)
+		if err != nil {
+			return nil, "", nil, err
+		}
 	}
 	options := []huh.Option[string]{}
 	if mapOptions, ok := input["options"].([]interface{}); ok {

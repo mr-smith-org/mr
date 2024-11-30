@@ -11,20 +11,10 @@ import (
 	"github.com/mr-smith-org/mr/internal/services"
 	"github.com/mr-smith-org/mr/pkg/filesystem"
 	"github.com/mr-smith-org/mr/pkg/style"
+	"github.com/spf13/afero"
 
 	handlers "github.com/mr-smith-org/mr/cmd/commands/exec/handlers"
-
-	"github.com/spf13/afero"
-	"github.com/spf13/cobra"
 )
-
-var ExecCmd = &cobra.Command{
-	Use:   "run",
-	Short: "Execute a specific run without a module",
-	Run: func(cmd *cobra.Command, args []string) {
-		Execute()
-	},
-}
 
 func Execute() {
 	if shared.Run == "" {
@@ -73,8 +63,4 @@ func handleTea() string {
 		os.Exit(1)
 	}
 	return output.Choice
-}
-
-func init() {
-	ExecCmd.Flags().StringVarP(&shared.Run, "run", "r", "", "run to use")
 }

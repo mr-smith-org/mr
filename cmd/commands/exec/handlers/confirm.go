@@ -1,9 +1,12 @@
 package handlers
 
 import (
+	"strconv"
+
 	"github.com/charmbracelet/huh"
 	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
+	"github.com/mr-smith-org/mr/cmd/shared"
 )
 
 type ConfirmHandler struct {
@@ -47,6 +50,14 @@ func handleConfirm(input map[string]interface{}, vars map[string]interface{}) (h
 	}
 	if negative == "" {
 		negative = "No"
+	}
+
+	if shared.Vars[out] != "" {
+		outResult, err := strconv.ParseBool(shared.Vars[out])
+		if err != nil {
+			return nil, "", nil, err
+		}
+		return nil, out, &outResult, nil
 	}
 
 	var outValue bool

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gookit/color"
-	"github.com/mr-smith-org/mr/internal/debug"
+	"github.com/mr-smith-org/mr/internal/verbose"
 )
 
 func PrintStyles() {
@@ -45,7 +45,7 @@ func ErrorPrint(text string) {
 
 func DebugPrint(header, text string) {
 	fmt.Println()
-	if debug.Debug {
+	if verbose.Verbose {
 		color.New(color.FgBlack, color.BgYellow).Println(" - " + header + " - ")
 		color.Gray.Println(text)
 	}
