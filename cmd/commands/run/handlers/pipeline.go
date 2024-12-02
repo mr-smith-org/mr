@@ -15,16 +15,15 @@ import (
 )
 
 type PipelineHandler struct {
-	name   string
 	module string
 }
 
-func NewPipelineHandler(name, module string) *PipelineHandler {
-	return &PipelineHandler{name: name, module: module}
+func NewPipelineHandler(module string) *PipelineHandler {
+	return &PipelineHandler{module: module}
 }
 
-func (h *PipelineHandler) Handle(data any, vars map[string]any) error {
-	return handlePipeline(h.name, h.module, vars)
+func (h *PipelineHandler) Handle(name any, vars map[string]any) error {
+	return handlePipeline(name.(string), h.module, vars)
 }
 
 func handlePipeline(name, moduleName string, vars map[string]interface{}) error {
@@ -54,7 +53,7 @@ func handlePipeline(name, moduleName string, vars map[string]interface{}) error 
 	mapHandlers := map[string]shared.Handler{
 		constants.CmdHandler:      NewCmdHandler(),
 		constants.LogHandler:      NewLogHandler(),
-		constants.PipelineHandler: NewPipelineHandler(name, moduleName),
+		constants.PipelineHandler: NewPipelineHandler(moduleName),
 		constants.CreateHandler:   NewCreateHandler(moduleName),
 		constants.LoadHandler:     NewLoadHandler(),
 		constants.WhenHandler:     NewWhenHandler(moduleName),

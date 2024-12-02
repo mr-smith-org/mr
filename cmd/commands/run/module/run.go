@@ -23,8 +23,8 @@ func Execute() {
 	vars := map[string]interface{}{
 		"data": map[string]interface{}{},
 	}
-	hdl := handlers.NewPipelineHandler(shared.Pipeline, shared.Module)
-	err := hdl.Handle(nil, vars)
+	hdl := handlers.NewPipelineHandler(shared.Module)
+	err := hdl.Handle(shared.Pipeline, vars)
 	if err != nil {
 		style.ErrorPrint(err.Error())
 		os.Exit(1)

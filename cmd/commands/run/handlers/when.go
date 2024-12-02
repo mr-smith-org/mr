@@ -27,8 +27,8 @@ func handleWhen(module string, params map[string]interface{}, vars map[string]in
 		return err
 	}
 	if isTrue {
-		hdl := NewPipelineHandler(pipeline, module)
-		err := hdl.Handle(nil, vars)
+		hdl := NewPipelineHandler(module)
+		err := hdl.Handle(pipeline, vars)
 		if err != nil {
 			return err
 		}
