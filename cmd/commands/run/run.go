@@ -1,12 +1,12 @@
-package exec
+package run
 
 import (
 	"os"
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
-	execModule "github.com/mr-smith-org/mr/cmd/commands/exec/module"
-	execRun "github.com/mr-smith-org/mr/cmd/commands/exec/run"
+	execModule "github.com/mr-smith-org/mr/cmd/commands/run/module"
+	execPipeline "github.com/mr-smith-org/mr/cmd/commands/run/pipeline"
 	"github.com/mr-smith-org/mr/cmd/shared"
 	"github.com/mr-smith-org/mr/cmd/ui/selectInput"
 	"github.com/mr-smith-org/mr/cmd/ui/utils/program"
@@ -17,9 +17,9 @@ import (
 
 var varsSlice = make([]string, 0)
 
-var ExecCmd = &cobra.Command{
-	Use:   "exec",
-	Short: "Manage Mr. Smith execs",
+var RunCmd = &cobra.Command{
+	Use:   "run",
+	Short: "Run a pipeline",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(varsSlice) > 0 {
@@ -28,10 +28,10 @@ var ExecCmd = &cobra.Command{
 				shared.Vars[splitVar[0]] = splitVar[1]
 			}
 		}
-		if shared.Run == "" && shared.Module == "" {
+		if shared.Pipeline == "" && shared.Module == "" {
 			choice := handleTea()
-			if choice == "run" {
-				execRun.Execute()
+			if choice == "pipeline" {
+				execPipeline.Execute()
 				os.Exit(0)
 			} else {
 				execModule.Execute()
@@ -43,8 +43,8 @@ var ExecCmd = &cobra.Command{
 			os.Exit(0)
 		}
 
-		if shared.Run != "" {
-			execRun.Execute()
+		if shared.Pipeline != "" {
+			execPipeline.Execute()
 			os.Exit(0)
 		}
 	},
@@ -52,7 +52,7 @@ var ExecCmd = &cobra.Command{
 
 func handleTea() string {
 	var options = []steps.Item{
-		steps.NewItem("run", "run", "", []string{}),
+		steps.NewItem("pipeline", "pipeline", "", []string{}),
 		steps.NewItem("module", "module", "", []string{}),
 	}
 	program := program.NewProgram()
@@ -70,7 +70,7 @@ func handleTea() string {
 }
 
 func init() {
-	ExecCmd.Flags().StringVarP(&shared.Run, "run", "r", "", "run to use")
-	ExecCmd.Flags().StringVarP(&shared.Module, "module", "m", "", "module to use")
-	ExecCmd.Flags().StringSliceVarP(&varsSlice, "vars", "v", []string{}, "variables to use")
+	RunCmd.Flags().StringVarP(&shared.Pipeline, "pipeline", "p", "", "pipeline to use")
+	RunCmd.Flags().StringVarP(&shared.Module, "module", "m", "", "module to use")
+	RunCmd.Flags().StringSliceVarP(&varsSlice, "vars", "v", []string{}, "variables to use")
 }

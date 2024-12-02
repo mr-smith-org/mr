@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/charmbracelet/huh"
-	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/run/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
 	"github.com/mr-smith-org/mr/cmd/shared"
 )

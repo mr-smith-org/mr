@@ -4,7 +4,7 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	handlers "github.com/mr-smith-org/mr/cmd/commands/exec/handlers"
+	handlers "github.com/mr-smith-org/mr/cmd/commands/run/handlers"
 	"github.com/mr-smith-org/mr/cmd/shared"
 	"github.com/mr-smith-org/mr/cmd/ui/selectInput"
 	"github.com/mr-smith-org/mr/cmd/ui/utils/program"
@@ -17,13 +17,13 @@ import (
 )
 
 func Execute() {
-	if shared.Run == "" || shared.Module == "" {
-		shared.Run = handleTea()
+	if shared.Pipeline == "" || shared.Module == "" {
+		shared.Pipeline = handleTea()
 	}
 	vars := map[string]interface{}{
 		"data": map[string]interface{}{},
 	}
-	hdl := handlers.NewRunHandler(shared.Run, shared.Module)
+	hdl := handlers.NewPipelineHandler(shared.Pipeline, shared.Module)
 	err := hdl.Handle(nil, vars)
 	if err != nil {
 		style.ErrorPrint(err.Error())
@@ -66,24 +66,24 @@ func handleTea() string {
 		shared.Module = output.Choice
 	}
 
-	runService := services.NewRunService(shared.FilesPath+"/"+shared.Module+"/"+shared.RunsPath, fs)
-	runs, err := runService.GetAll(true)
+	pipelineService := services.NewPipelineService(shared.FilesPath+"/"+shared.Module+"/"+shared.PipelinesPath, fs)
+	pipelines, err := pipelineService.GetAll(true)
 	if err != nil {
-		style.ErrorPrint("getting runs error: " + err.Error())
+		style.ErrorPrint("getting pipelines error: " + err.Error())
 		os.Exit(1)
 	}
 	var options = make([]steps.Item, 0)
-	for key, run := range runs {
+	for key, pipeline := range pipelines {
 		options = append(options, steps.NewItem(
 			key,
 			key,
-			run.Description,
+			pipeline.Description,
 			[]string{},
 		))
 	}
 
 	output := &selectInput.Selection{}
-	p := tea.NewProgram(selectInput.InitialSelectInputModel(options, output, "Select a run", false, program))
+	p := tea.NewProgram(selectInput.InitialSelectInputModel(options, output, "Select a pipeline", false, program))
 	_, err = p.Run()
 
 	program.ExitCLI(p)
