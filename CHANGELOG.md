@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- /UNRELEASED -->
 
 <!-- NEXT RELEASE -->
+## [v1.1.1] - 2024-12-02
+
+### Fixed
+    - fixed displayed version
+
+## [v1.1.0] - 2024-12-02
+
+### Changed
+    - exec command: was renamed to run command and --run flag was renamed to --pipeline flag
+    - run was renamed to pipeline for better understanding
+
+### Fixed
+    - pipeline step execution infinity loop
+
 ## [v1.0.0] - 2024-11-29
 
 ### Added
