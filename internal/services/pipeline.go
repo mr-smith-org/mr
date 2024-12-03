@@ -21,13 +21,13 @@ func NewPipelineService(path string, fs filesystem.FileSystemInterface) *Pipelin
 }
 
 func (s *PipelineService) GetAll(onlyVisible bool) (map[string]domain.Pipeline, error) {
-	deprecatePipelineFileMsg := "\nif your a using pipelines.yaml file, please move it to the pipeline folder"
+	deprecateRunMsg := "\nif your a using runs folder, please rename it to pipelines and try again"
 	files, err := s.fs.ReadDir(s.path)
 	if err != nil {
-		return nil, fmt.Errorf("error reading pipelines directory: %w%s", err, deprecatePipelineFileMsg)
+		return nil, fmt.Errorf("error reading pipelines directory: %w%s", err, deprecateRunMsg)
 	}
 	if len(files) == 0 {
-		return nil, fmt.Errorf("no pipeline found in %s%s", s.path, deprecatePipelineFileMsg)
+		return nil, fmt.Errorf("no pipeline found in %s%s", s.path, deprecateRunMsg)
 	}
 	pipelines := make(map[string]domain.Pipeline)
 	for _, fileName := range files {

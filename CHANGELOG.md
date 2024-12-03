@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- /UNRELEASED -->
 
 <!-- NEXT RELEASE -->
+## [v1.2.0] - 2024-12-02
+
+### Added
+    - auto update feature
+
 ## [v1.1.1] - 2024-12-02
 
 ### Fixed
