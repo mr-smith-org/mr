@@ -8,11 +8,12 @@ import (
 	"github.com/mr-smith-org/mr/cmd/commands/modify"
 	"github.com/mr-smith-org/mr/cmd/commands/module"
 	"github.com/mr-smith-org/mr/cmd/commands/run"
+	"github.com/mr-smith-org/mr/cmd/shared"
 	"github.com/mr-smith-org/mr/internal/verbose"
 	"github.com/spf13/cobra"
 )
 
-const version = "v1.1.1"
+const version = "v1.2.0"
 
 var (
 	showVersion bool
@@ -42,6 +43,9 @@ func init() {
 	rootCmd.CompletionOptions.HiddenDefaultCmd = true
 	rootCmd.PersistentFlags().BoolVarP(&verbose.Verbose, "verbose", "", false, "Enable verbose logs")
 	rootCmd.Flags().BoolVarP(&showVersion, "version", "v", false, "Print the version number of Mr. Smith")
+	rootCmd.PreRun = func(cmd *cobra.Command, args []string) {
+		shared.RunCommand("go", "install", "github.com/mr-smith-org/mr@latest")
+	}
 	rootCmd.AddCommand(create.CreateCmd)
 	rootCmd.AddCommand(module.ModuleCmd)
 	rootCmd.AddCommand(run.RunCmd)
