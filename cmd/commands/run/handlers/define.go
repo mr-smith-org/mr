@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/run/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
 )
 

@@ -1,6 +1,6 @@
 package domain
 
-type Run struct {
+type Pipeline struct {
 	Key         string        `json:"key"`
 	Description string        `json:"description"`
 	Steps       []interface{} `json:"steps"`
@@ -8,8 +8,8 @@ type Run struct {
 	Visible     bool          `json:"visible"`
 }
 
-func NewRun(key string, description string, steps []interface{}, file string, visible bool) Run {
-	return Run{
+func NewPipeline(key string, description string, steps []interface{}, file string, visible bool) Pipeline {
+	return Pipeline{
 		Key:         key,
 		Description: description,
 		Steps:       steps,

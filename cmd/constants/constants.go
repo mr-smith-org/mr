@@ -1,15 +1,15 @@
 package constants
 
 const (
-	CreateHandler = "create"
-	LoadHandler   = "load"
-	LogHandler    = "log"
-	RunHandler    = "run"
-	WhenHandler   = "when"
-	ModifyHandler = "modify"
-	CmdHandler    = "cmd"
-	FormHandler   = "form"
-	DefineHandler = "define"
+	CreateHandler   = "create"
+	LoadHandler     = "load"
+	LogHandler      = "log"
+	PipelineHandler = "pipeline"
+	WhenHandler     = "when"
+	ModifyHandler   = "modify"
+	CmdHandler      = "cmd"
+	FormHandler     = "form"
+	DefineHandler   = "define"
 )
 
 const (

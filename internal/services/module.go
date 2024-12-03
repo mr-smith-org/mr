@@ -80,12 +80,12 @@ func (s *ModuleService) Get(module string) (domain.Module, error) {
 	if err != nil {
 		return domain.Module{}, err
 	}
-	runsService := NewRunService(s.path+"/"+module+"/"+shared.RunsPath, s.fs)
-	runs, err := runsService.GetAll(false)
+	pipelinesService := NewPipelineService(s.path+"/"+module+"/"+shared.PipelinesPath, s.fs)
+	pipelines, err := pipelinesService.GetAll(false)
 	if err != nil {
 		return domain.Module{}, err
 	}
-	return domain.NewModule(configData, runs), nil
+	return domain.NewModule(configData, pipelines), nil
 }
 
 func (s *ModuleService) GetAll() (map[string]domain.Module, error) {
@@ -114,34 +114,34 @@ func (s *ModuleService) GetModuleName(repo string) string {
 	return splitRepo[1]
 }
 
-func (s *ModuleService) GetRun(module *domain.Module, runKey string, modulePath string) (*domain.Run, error) {
-	moduleRun := module.Runs[runKey]
-	runs, err := helpers.UnmarshalFile(modulePath+"/"+moduleRun.File, s.fs)
+func (s *ModuleService) GetPipeline(module *domain.Module, pipelineKey string, modulePath string) (*domain.Pipeline, error) {
+	modulePipeline := module.Pipelines[pipelineKey]
+	pipelines, err := helpers.UnmarshalFile(modulePath+"/"+modulePipeline.File, s.fs)
 	if err != nil {
 		return nil, err
 	}
-	runContent, ok := runs[runKey]
+	pipelineContent, ok := pipelines[pipelineKey]
 	if !ok {
-		return nil, fmt.Errorf("run not found: %s", runKey)
+		return nil, fmt.Errorf("pipeline not found: %s", pipelineKey)
 	}
-	description, ok := runContent.(map[string]interface{})["description"].(string)
+	description, ok := pipelineContent.(map[string]interface{})["description"].(string)
 	if !ok {
 		description = ""
 	}
-	steps, ok := runContent.(map[string]interface{})["steps"].([]interface{})
+	steps, ok := pipelineContent.(map[string]interface{})["steps"].([]interface{})
 	if !ok {
 		steps = []interface{}{}
 	}
-	visible, ok := runContent.(map[string]interface{})["visible"].(bool)
+	visible, ok := pipelineContent.(map[string]interface{})["visible"].(bool)
 	if !ok {
 		visible = true
 	}
-	run := domain.NewRun(
-		runKey,
+	pipeline := domain.NewPipeline(
+		pipelineKey,
 		description,
 		steps,
-		moduleRun.File,
+		modulePipeline.File,
 		visible,
 	)
-	return &run, nil
+	return &pipeline, nil
 }

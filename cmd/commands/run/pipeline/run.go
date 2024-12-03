@@ -1,4 +1,4 @@
-package execRun
+package execPipeline
 
 import (
 	"os"
@@ -13,18 +13,18 @@ import (
 	"github.com/mr-smith-org/mr/pkg/style"
 	"github.com/spf13/afero"
 
-	handlers "github.com/mr-smith-org/mr/cmd/commands/exec/handlers"
+	handlers "github.com/mr-smith-org/mr/cmd/commands/run/handlers"
 )
 
 func Execute() {
-	if shared.Run == "" {
-		shared.Run = handleTea()
+	if shared.Pipeline == "" {
+		shared.Pipeline = handleTea()
 	}
 	vars := map[string]interface{}{
 		"data": map[string]interface{}{},
 	}
-	hdl := handlers.NewRunHandler(shared.Run, "")
-	err := hdl.Handle(nil, vars)
+	hdl := handlers.NewPipelineHandler(shared.Module)
+	err := hdl.Handle(shared.Pipeline, vars)
 	if err != nil {
 		style.ErrorPrint(err.Error())
 		os.Exit(1)
@@ -36,24 +36,24 @@ func handleTea() string {
 	program := program.NewProgram()
 
 	fs := filesystem.NewFileSystem(afero.NewOsFs())
-	runService := services.NewRunService(shared.RunsPath, fs)
-	runs, err := runService.GetAll(true)
+	pipelineService := services.NewPipelineService(shared.PipelinesPath, fs)
+	pipelines, err := pipelineService.GetAll(true)
 	if err != nil {
-		style.ErrorPrint("getting runs error: " + err.Error())
+		style.ErrorPrint("getting pipelines error: " + err.Error())
 		os.Exit(1)
 	}
 	var options = make([]steps.Item, 0)
-	for key, run := range runs {
+	for key, pipeline := range pipelines {
 		options = append(options, steps.NewItem(
 			key,
 			key,
-			run.Description,
+			pipeline.Description,
 			[]string{},
 		))
 	}
 
 	output := &selectInput.Selection{}
-	p := tea.NewProgram(selectInput.InitialSelectInputModel(options, output, "Select a run", false, program))
+	p := tea.NewProgram(selectInput.InitialSelectInputModel(options, output, "Select a pipeline", false, program))
 	_, err = p.Run()
 
 	program.ExitCLI(p)

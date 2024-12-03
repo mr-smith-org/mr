@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	execBuilders "github.com/mr-smith-org/mr/cmd/commands/exec/builders"
+	execBuilders "github.com/mr-smith-org/mr/cmd/commands/run/builders"
 	"github.com/mr-smith-org/mr/cmd/constants"
 )
 
@@ -22,13 +22,13 @@ func handleWhen(module string, params map[string]interface{}, vars map[string]in
 	if err != nil {
 		return err
 	}
-	run, err := execBuilders.BuildStringValue("run", params, vars, true, constants.WhenHandler)
+	pipeline, err := execBuilders.BuildStringValue("pipeline", params, vars, true, constants.WhenHandler)
 	if err != nil {
 		return err
 	}
 	if isTrue {
-		hdl := NewRunHandler(run, module)
-		err := hdl.Handle(nil, vars)
+		hdl := NewPipelineHandler(module)
+		err := hdl.Handle(pipeline, vars)
 		if err != nil {
 			return err
 		}

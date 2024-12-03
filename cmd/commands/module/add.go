@@ -4,7 +4,7 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	execModule "github.com/mr-smith-org/mr/cmd/commands/exec/module"
+	execModule "github.com/mr-smith-org/mr/cmd/commands/run/module"
 	"github.com/mr-smith-org/mr/cmd/shared"
 	"github.com/mr-smith-org/mr/cmd/ui/selectInput"
 	"github.com/mr-smith-org/mr/cmd/ui/utils/program"

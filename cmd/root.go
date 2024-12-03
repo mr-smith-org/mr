@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/mr-smith-org/mr/cmd/commands/create"
-	execRun "github.com/mr-smith-org/mr/cmd/commands/exec"
 	"github.com/mr-smith-org/mr/cmd/commands/modify"
 	"github.com/mr-smith-org/mr/cmd/commands/module"
+	"github.com/mr-smith-org/mr/cmd/commands/run"
 	"github.com/mr-smith-org/mr/internal/verbose"
 	"github.com/spf13/cobra"
 )
@@ -44,6 +44,6 @@ func init() {
 	rootCmd.Flags().BoolVarP(&showVersion, "version", "v", false, "Print the version number of Mr. Smith")
 	rootCmd.AddCommand(create.CreateCmd)
 	rootCmd.AddCommand(module.ModuleCmd)
-	rootCmd.AddCommand(execRun.ExecCmd)
+	rootCmd.AddCommand(run.RunCmd)
 	rootCmd.AddCommand(modify.ModifyCmd)
 }
