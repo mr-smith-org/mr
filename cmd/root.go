@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "v1.3.1"
+const version = "v1.3.3"
 
 var (
 	showVersion bool
@@ -43,7 +43,7 @@ func init() {
 	rootCmd.CompletionOptions.HiddenDefaultCmd = true
 	rootCmd.PersistentFlags().BoolVarP(&verbose.Verbose, "verbose", "", false, "Enable verbose logs")
 	rootCmd.Flags().BoolVarP(&showVersion, "version", "v", false, "Print the version number of Mr. Smith")
-	rootCmd.PreRun = func(cmd *cobra.Command, args []string) {
+	rootCmd.PersistentPreRun = func(cmd *cobra.Command, args []string) {
 		shared.RunCommand("go", "install", "github.com/mr-smith-org/mr@latest")
 	}
 	rootCmd.AddCommand(create.CreateCmd)
