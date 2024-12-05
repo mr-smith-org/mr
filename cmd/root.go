@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "v1.3.1"
+const version = "v1.3.3"
 
 var (
 	showVersion bool
