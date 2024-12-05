@@ -98,6 +98,7 @@ func addModule(module string) error {
 	if err := shared.RunCommand("git", "clone", shared.GitHubURL+"/"+module, shared.FilesPath+"/"+moduleService.GetModuleName(module)); err != nil {
 		return err
 	}
+	shared.RunCommand("mv", shared.FilesPath+"/"+moduleService.GetModuleName(module)+"/.mr-smith/runs", shared.FilesPath+"/"+moduleService.GetModuleName(module)+"/.mr-smith/pipelines")
 	if err := shared.RunCommand("rm", "-rf", shared.FilesPath+"/"+moduleService.GetModuleName(module)+"/.git"); err != nil {
 		return err
 	}

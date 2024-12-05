@@ -3,6 +3,7 @@ package services
 import (
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/mr-smith-org/mr/cmd/shared"
@@ -85,7 +86,7 @@ func (s *ModuleService) Get(module string) (domain.Module, error) {
 	if err != nil {
 		return domain.Module{}, err
 	}
-	return domain.NewModule(configData, pipelines), nil
+	return domain.NewModule(module, configData, pipelines), nil
 }
 
 func (s *ModuleService) GetAll() (map[string]domain.Module, error) {
@@ -107,6 +108,19 @@ func (s *ModuleService) GetAll() (map[string]domain.Module, error) {
 		modulesMap[key] = *m
 	}
 	return modulesMap, nil
+}
+
+func (s *ModuleService) ToSliceAndSort(modules map[string]domain.Module) []domain.Module {
+	var result []domain.Module
+	keys := make([]string, 0, len(modules))
+	for key := range modules {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	for _, key := range keys {
+		result = append(result, modules[key])
+	}
+	return result
 }
 
 func (s *ModuleService) GetModuleName(repo string) string {

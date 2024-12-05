@@ -42,11 +42,13 @@ func handleTea() string {
 		style.ErrorPrint("getting pipelines error: " + err.Error())
 		os.Exit(1)
 	}
+	pipelinesSlice := pipelineService.ToSliceAndSort(pipelines)
+
 	var options = make([]steps.Item, 0)
-	for key, pipeline := range pipelines {
+	for _, pipeline := range pipelinesSlice {
 		options = append(options, steps.NewItem(
-			key,
-			key,
+			pipeline.Key,
+			pipeline.Key,
 			pipeline.Description,
 			[]string{},
 		))
