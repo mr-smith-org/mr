@@ -6,12 +6,13 @@ type ModulePipeline struct {
 }
 
 type Module struct {
+	Key         string                    `json:"key"`
 	Description string                    `json:"description"`
 	Version     string                    `json:"version"`
 	Pipelines   map[string]ModulePipeline `json:"pipelines"`
 }
 
-func NewModule(module map[string]interface{}, pipelines map[string]Pipeline) Module {
+func NewModule(moduleKey string, module map[string]interface{}, pipelines map[string]Pipeline) Module {
 	pipelinesMap := map[string]ModulePipeline{}
 	for key, pipeline := range pipelines {
 		pipelinesMap[key] = ModulePipeline{
@@ -20,6 +21,7 @@ func NewModule(module map[string]interface{}, pipelines map[string]Pipeline) Mod
 		}
 	}
 	return Module{
+		Key:         moduleKey,
 		Description: module["description"].(string),
 		Version:     module["version"].(string),
 		Pipelines:   pipelinesMap,

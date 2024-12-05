@@ -72,23 +72,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.cursor++
 			}
 		case "enter", " ":
-			if len(m.selected) == 1 {
-				m.selected = make(map[int]struct{})
+			m.selected[m.cursor] = struct{}{}
+			for selectedKey := range m.selected {
+				m.choice.Update(m.choices[selectedKey].Value)
+				m.cursor = selectedKey
 			}
-			_, ok := m.selected[m.cursor]
-			if ok {
-				delete(m.selected, m.cursor)
-			} else {
-				m.selected[m.cursor] = struct{}{}
-			}
-		case "y":
-			if len(m.selected) == 1 {
-				for selectedKey := range m.selected {
-					m.choice.Update(m.choices[selectedKey].Value)
-					m.cursor = selectedKey
-				}
-				return m, tea.Quit
-			}
+			return m, tea.Quit
 		case "o":
 			if m.other {
 				textValue := &textInput.Output{}
@@ -130,8 +119,6 @@ func (m model) View() string {
 
 		s += fmt.Sprintf("%s [%s] %s%s%s\n\n", cursor, checked, label, description, tags)
 	}
-
-	s += fmt.Sprintf("Press %s to confirm choice.\n", style.FocusedStyle.Render("y"))
 	if m.other {
 		s += fmt.Sprintf("Press %s to text another option.\n", style.FocusedStyle.Render("o"))
 	}

@@ -43,11 +43,13 @@ func handleTea() string {
 			style.ErrorPrint("getting modules error: " + err.Error())
 			os.Exit(1)
 		}
+		modulesSlice := modulesService.ToSliceAndSort(modules)
+
 		var options = make([]steps.Item, 0)
-		for key, module := range modules {
+		for _, module := range modulesSlice {
 			options = append(options, steps.NewItem(
-				key,
-				key,
+				module.Key,
+				module.Key,
 				module.Description,
 				[]string{},
 			))
@@ -68,15 +70,16 @@ func handleTea() string {
 
 	pipelineService := services.NewPipelineService(shared.FilesPath+"/"+shared.Module+"/"+shared.PipelinesPath, fs)
 	pipelines, err := pipelineService.GetAll(true)
+	pipelinesSlice := pipelineService.ToSliceAndSort(pipelines)
 	if err != nil {
 		style.ErrorPrint("getting pipelines error: " + err.Error())
 		os.Exit(1)
 	}
 	var options = make([]steps.Item, 0)
-	for key, pipeline := range pipelines {
+	for _, pipeline := range pipelinesSlice {
 		options = append(options, steps.NewItem(
-			key,
-			key,
+			pipeline.Key,
+			pipeline.Key,
 			pipeline.Description,
 			[]string{},
 		))

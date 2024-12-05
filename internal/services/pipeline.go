@@ -67,6 +67,18 @@ func (s *PipelineService) GetAll(onlyVisible bool) (map[string]domain.Pipeline, 
 	return pipelines, nil
 }
 
+func (s *PipelineService) ToSliceAndSort(pipelines map[string]domain.Pipeline) []domain.Pipeline {
+	var result []domain.Pipeline
+	keys := make([]string, 0, len(pipelines))
+	for key := range pipelines {
+		keys = append(keys, key)
+	}
+	for _, key := range keys {
+		result = append(result, pipelines[key])
+	}
+	return result
+}
+
 func (s *PipelineService) Get(name string) (*domain.Pipeline, error) {
 	pipelines, err := s.GetAll(false)
 	if err != nil {
