@@ -1,0 +1,80 @@
+commit:
+  description: "Write conventional commits for your projects with a friendly TUI."
+  steps:
+    - form:
+        fields: 
+          - select:
+              label: "Choose the commit type"
+              options:
+                - label: feat
+                - label: fix
+                - label: chore
+                - label: docs
+                - label: style
+                - label: refactor
+                - label: perf
+                - label: test
+                - label: build
+                - label: ci
+                - label: revert
+              out: type
+
+          - input:
+              label: "Enter the commit scope (optional)"
+              out: scope
+              
+          - text:
+              label: "Enter the commit description"
+              out: description
+          
+          - confirm:
+              label: "Does this commit cause any breaking change?"
+              affirmative: "Yes!"
+              negative: "No!"
+              out: breakingChange
+
+    - when: 
+        condition: "{{.data.breakingChange}}"
+        pipeline: describe-breaking-change
+
+    - modify:
+        file: "commit_message.txt"
+        template: "templates/message.gtpl"
+        mark: ""
+        action: "replace"
+
+    - load:
+        from: "commit_message.txt"
+        out: message
+
+    - form:
+        fields:
+          - confirm:
+              label: "Do you want to commit this?"
+              description: "{{.data.message.content}}"
+              affirmative: "Yes!"
+              negative: "No!"
+              out: canCommit
+
+    - when:
+        condition: "{{.data.canCommit}}"
+        pipeline: create-commit
+
+
+create-commit:
+   visible: false
+   steps:
+        - cmd: "git commit -F commit_message.txt"
+        - cmd: "rm -rf commit_message.txt"
+
+
+describe-breaking-change:
+  visible: false
+  steps:
+    - form:
+        fields:
+          - text:
+              label: "Describe the breaking change (optional)"
+              out: breakingMessage
+
+          
