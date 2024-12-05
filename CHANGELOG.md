@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- /UNRELEASED -->
 
 <!-- NEXT RELEASE -->
+## [v1.3.1] - 2024-12-04
+    - Fix version name
+
 ## [v1.3.0] - 2024-12-04
     - TUI Improvements
 
